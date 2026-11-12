@@ -969,13 +969,15 @@ figcaption { position: absolute; top: 6px; right: 8px; font-size: 11px; color: #
   // Key formats overlap, so try both and remember which one answered.
   const VTX = "https://aiplatform.googleapis.com/v1/publishers/google/models/";
   const FLASH = ["gemini-2.5-flash", "gemini-3-flash", "gemini-3.0-flash", "gemini-flash-latest", "gemini-2.0-flash"];
-  const gemUrl = (key, m) => (m.kind === "vx" ? VTX + m.model : GEM + m.model) + ":generateContent?key=" + encodeURIComponent(key);
+  // Gemini API: key in the x-goog-api-key header (what AI Studio's own curl sample does; needed for "AQ." auth keys)
+  const gemUrl = (key, m) => m.kind === "vx" ? VTX + m.model + ":generateContent?key=" + encodeURIComponent(key) : GEM + m.model + ":generateContent";
+  const gemHeaders = (key, m) => Object.assign({ "Content-Type": "application/json" }, m.kind === "vx" ? {} : { "x-goog-api-key": key });
   const probeBody = JSON.stringify({ contents: [{ role: "user", parts: [{ text: "hi" }] }], generationConfig: { maxOutputTokens: 8 } });
   async function gemModel(key) {
     const cached = store.get("gemModel"); if (cached && cached.kind) return cached;
     let firstErr = null;
     // 1) Gemini API: list the models this key can use and take the newest stable Flash
-    const r = await fetch(GEM + "models?pageSize=200&key=" + encodeURIComponent(key));
+    const r = await fetch(GEM + "models?pageSize=200", { headers: { "x-goog-api-key": key } });
     if (r.ok) {
       const ms = ((await r.json()).models || []).filter(m => (m.supportedGenerationMethods || []).includes("generateContent"));
       const ver = m => parseFloat((m.name.match(/gemini-([\d.]+)/) || [0, 0])[1]);
@@ -986,7 +988,7 @@ figcaption { position: absolute; top: 6px; right: 8px; font-size: 11px; color: #
     // 2) Vertex AI express: no model list, so probe the usual Flash names with a tiny request
     for (const name of FLASH) {
       const m = { kind: "vx", model: name };
-      const v = await fetch(gemUrl(key, m), { method: "POST", headers: { "Content-Type": "application/json" }, body: probeBody });
+      const v = await fetch(gemUrl(key, m), { method: "POST", headers: gemHeaders(key, m), body: probeBody });
       if (v.ok) { store.set("gemModel", m); return m }
       if (v.status !== 404) { const e = await gemErr(v); throw (firstErr && firstErr.code !== "bad_key") ? firstErr : Object.assign(e, { detail: [firstErr && firstErr.detail, e.detail].filter(Boolean).join(" | ") }) }
     }
@@ -998,7 +1000,7 @@ figcaption { position: absolute; top: 6px; right: 8px; font-size: 11px; color: #
     try {
       const model = await gemModel(key);
       r = await fetch(gemUrl(key, model), { method: "POST", signal,
-        headers: { "Content-Type": "application/json" },
+        headers: gemHeaders(key, model),
         body: JSON.stringify({ contents, generationConfig: json ? { responseMimeType: "application/json" } : {} }) });
     } catch (e) { throw e && e.code ? e : { code: e && e.name === "AbortError" ? "cancelled" : "upstream_error" } }
     if (!r.ok) { if (r.status === 404) store.set("gemModel", null); throw await gemErr(r) }
