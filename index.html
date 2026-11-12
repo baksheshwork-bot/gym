@@ -7,7 +7,7 @@
 <link rel="manifest" href="manifest.webmanifest">
 <link rel="apple-touch-icon" href="icon-180.png"><link rel="icon" href="icon-192.png">
 <style>:root{padding-top:env(safe-area-inset-top,0px);padding-bottom:env(safe-area-inset-bottom,0px)}body{margin:0}img{max-width:100%}[hidden]{display:none!important}</style>
-</head><body class="no-ai"><title>تمارين الجيم A·B·C</title>
+</head><body class="app no-ai"><script>window.GYM_APP = true;</script><title>تمارين الجيم A·B·C</title>
 <meta name="claude:viewport-fit-sides" content="cover">
 <link rel="stylesheet" href="fonts.css">
 <style>
@@ -164,6 +164,19 @@ figcaption { position: absolute; top: 6px; right: 8px; font-size: 11px; color: #
 .rules { margin-top: 20px; background: var(--surface); border: 1px solid var(--line); border-radius: 16px; padding: 12px 16px }
 .rules ul { margin: 6px 0 0; padding-inline-start: 18px }
 .no-ai .ai { display: none }
+.app-only { display: none }
+.app .app-only { display: grid }
+.settings { gap: 12px; margin-bottom: 14px }
+.settings h3 { margin: 0 }
+.set-block { display: grid; gap: 6px; border-top: 1px dashed var(--line); padding-top: 10px }
+.set-block h4 { margin: 0; font-family: var(--display); font-size: 15px }
+.set-block p { margin: 0 }
+.set-block label { font-size: 13.5px; font-weight: 600 }
+.set-block input { width: 100%; border: 1px solid var(--line); border-radius: 10px; background: var(--bg); color: var(--ink); font: 16px var(--body); padding: 8px 10px }
+.set-block button { border: none; background: var(--accent); color: var(--accent-ink); border-radius: 10px; padding: 8px 14px; font: 600 14px var(--body); cursor: pointer }
+.sync-st { font-weight: 600; color: var(--done) }
+.sync-st.bad { color: var(--warn) }
+.linkbtn { background: none; border: none; padding: 0; color: var(--warn); font: inherit; text-decoration: underline; cursor: pointer }
 /* record */
 .mnav { display: flex; gap: 6px }
 .mnav button, .ghost { border-radius: 10px; padding: 6px 12px; font: 600 14px var(--body); cursor: pointer }
@@ -240,8 +253,8 @@ figcaption { position: absolute; top: 6px; right: 8px; font-size: 11px; color: #
 </style>
 
 <header class="top"><div class="wrap">
-  <div class="brand">تمارين الجيم<small>تمرين · أكل · سجل</small></div>
-  <nav class="tabs" aria-label="أقسام الموقع"><a class="tab" href="#day-a"><b>A</b><span>السبت</span></a><a class="tab" href="#day-b"><b>B</b><span>الاثنين</span></a><a class="tab" href="#day-c"><b>C</b><span>الأربع</span></a><a class="tab" href="#food"><b><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M7 3v8m-3-8v5a3 3 0 0 0 6 0V3M7 11v10M17 3c-2 1-3 4-3 7h3v11" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg></b><span>الأكل</span></a><a class="tab" href="#log"><b><svg viewBox="0 0 24 24" aria-hidden="true"><rect x="3.5" y="5" width="17" height="15" rx="2.5" fill="none" stroke="currentColor" stroke-width="2"/><path d="M3.5 10h17M8 3v4M16 3v4" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"/></svg></b><span>السجل</span></a></nav>
+  <div class="brand">تمارين الجيم<small>تمرين · أكل · سجل · كوتش</small></div>
+  <nav class="tabs" aria-label="أقسام الموقع"><a class="tab" href="#day-a"><b>A</b><span>السبت</span></a><a class="tab" href="#day-b"><b>B</b><span>الاثنين</span></a><a class="tab" href="#day-c"><b>C</b><span>الأربع</span></a><a class="tab" href="#food"><b><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M7 3v8m-3-8v5a3 3 0 0 0 6 0V3M7 11v10M17 3c-2 1-3 4-3 7h3v11" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg></b><span>الأكل</span></a><a class="tab" href="#log"><b><svg viewBox="0 0 24 24" aria-hidden="true"><rect x="3.5" y="5" width="17" height="15" rx="2.5" fill="none" stroke="currentColor" stroke-width="2"/><path d="M3.5 10h17M8 3v4M16 3v4" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"/></svg></b><span>السجل</span></a><a class="tab" href="#coach"><b><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M4 5h16v11H9l-5 4z" fill="none" stroke="currentColor" stroke-width="2" stroke-linejoin="round"/></svg></b><span>الكوتش</span></a></nav>
 </div></header>
 
 <main class="wrap">
@@ -880,9 +893,31 @@ figcaption { position: absolute; top: 6px; right: 8px; font-size: 11px; color: #
   <div class="cal" id="lg-cal" role="grid" aria-label="أيام الشهر"></div>
   <p class="legend"><span class="lg-dot good"></span> أكل في الهدف <span class="lg-dot over"></span> زيادة <span class="lg-dot under"></span> أقل من الهدف <span class="badge-s">A</span> يوم تمرين</p>
   <div class="dayd" id="lg-day"></div>
+  <div class="rules settings app-only">
+    <h3>الإعدادات</h3>
+    <div class="set-block">
+      <h4>الحفظ أونلاين (GitHub)</h4>
+      <p class="sub">السجل بيتحفظ في repo خاص على حسابك، ويترفع لوحده أول ما يبقى فيه نت.</p>
+      <p class="sync-st" id="sync-st" aria-live="polite"></p>
+      <label for="gh-token">مفتاح GitHub <span class="sub" id="gh-state"></span></label>
+      <input id="gh-token" type="password" autocomplete="off" placeholder="github_pat_...">
+      <label for="gh-repo">الـ repo</label>
+      <input id="gh-repo" type="text" dir="ltr" autocomplete="off">
+      <div class="ask-b"><button type="button" id="gh-save">احفظ وزامن دلوقتي</button></div>
+    </div>
+    <div class="set-block">
+      <h4>الذكاء الاصطناعي (Gemini)</h4>
+      <p class="sub">بيشغّل الكوتش وتحليل الأكل لما يكون فيه نت. اعمل مفتاح مجاني من aistudio.google.com/apikey.</p>
+      <label for="gem-key">مفتاح Gemini <span class="sub" id="gem-state"></span></label>
+      <input id="gem-key" type="password" autocomplete="off" placeholder="AIza...">
+      <div class="ask-b"><button type="button" id="gem-save">احفظ وجرّب</button></div>
+      <p class="sub" id="gem-msg" aria-live="polite"></p>
+    </div>
+    <p class="sub">المفاتيح بتتحفظ على الموبايل ده بس، ومش بتتبعت غير لـ GitHub وGoogle. <button type="button" class="linkbtn" id="keys-clear">امسح المفاتيح</button></p>
+  </div>
   <div class="rules backup">
     <h3>نسخة احتياطية</h3>
-    <p class="sub">السجل متخزن على الجهاز ده بس. اعمل نسخة احتياطية كل شهر عشان لو مسحت المتصفح أو غيرت الموبايل.</p>
+    <p class="sub">ملف فيه السجل كله تحتفظ بيه في أي مكان، كأمان زيادة.</p>
     <div class="ask-b"><label class="ghost filebtn" for="lg-import">استرجع من ملف</label><input type="file" id="lg-import" accept="application/json,.json" hidden>
       <button type="button" id="lg-export">احفظ نسخة</button></div>
     <p class="none" id="lg-msg" aria-live="polite"></p>
@@ -894,7 +929,7 @@ figcaption { position: absolute; top: 6px; right: 8px; font-size: 11px; color: #
     <button class="reset" type="button" id="chat-clear">محادثة جديدة</button></div>
   <div class="chips-q" id="chips-q"><button type="button" class="q">فاضلي كام بروتين النهارده؟ أكمّل بإيه؟</button><button type="button" class="q">أنا بره البيت ومش معايا أكلي، آكل إيه؟</button><button type="button" class="q">جعان بالليل بعد العشا، أعمل إيه؟</button><button type="button" class="q">الجهاز مشغول وماليش نفس أستنى، أعمل إيه؟</button><button type="button" class="q">مش قادر أروح الجيم النهارده</button><button type="button" class="q">حاسس بوجع خفيف في ركبتي في السكوات</button></div>
   <div class="chat" id="chat" aria-live="polite"></div>
-  <p class="none" id="coach-off" hidden>الكوتش بيشتغل لما تفتح الصفحة من حسابك على Claude. باقي الموقع شغال عادي.</p>
+  <p class="none" id="coach-off" hidden></p>
   <form class="ask" id="ask">
     <label class="sr" for="ask-in">سؤالك</label>
     <textarea id="ask-in" rows="2" placeholder="اكتب سؤالك هنا..."></textarea>
@@ -921,6 +956,121 @@ figcaption { position: absolute; top: 6px; right: 8px; font-size: 11px; color: #
     set(k, v) { try { localStorage.setItem(k, JSON.stringify(v)) } catch (e) {} }
   };
   const today = new Date().toLocaleDateString("en-CA");
+  const APP = !!window.GYM_APP; // the phone app (GitHub Pages) vs. the Claude artifact
+
+  // ----- AI: Claude inside the artifact viewer; Gemini with the viewer's own key in the phone app
+  let claudeSample = null;
+  const GEM = "https://generativelanguage.googleapis.com/v1beta/";
+  function gemErr(status) { return { code: status === 429 ? "rate_limited" : [400, 401, 403].includes(status) ? "bad_key" : "upstream_error" } }
+  async function gemModel(key) {
+    const cached = store.get("gemModel"); if (cached) return cached;
+    const r = await fetch(GEM + "models?pageSize=200&key=" + encodeURIComponent(key));
+    if (!r.ok) throw gemErr(r.status);
+    const ms = ((await r.json()).models || []).filter(m => (m.supportedGenerationMethods || []).includes("generateContent"));
+    const ver = m => parseFloat((m.name.match(/gemini-([\d.]+)/) || [0, 0])[1]);
+    const stable = ms.filter(m => /^models\/gemini-[\d.]+-flash$/.test(m.name)).sort((a, b) => ver(b) - ver(a));
+    const pick = (stable[0] || ms.find(m => /gemini.*flash/.test(m.name)) || {}).name;
+    if (!pick) throw { code: "upstream_error" };
+    store.set("gemModel", pick); return pick;
+  }
+  async function gemCall(contents, json, signal) {
+    const key = store.get("geminiKey");
+    let r;
+    try {
+      const model = await gemModel(key);
+      r = await fetch(GEM + model + ":generateContent?key=" + encodeURIComponent(key), { method: "POST", signal,
+        headers: { "Content-Type": "application/json" },
+        body: JSON.stringify({ contents, generationConfig: json ? { responseMimeType: "application/json" } : {} }) });
+    } catch (e) { throw e && e.code ? e : { code: e && e.name === "AbortError" ? "cancelled" : "upstream_error" } }
+    if (!r.ok) { if (r.status === 404) store.set("gemModel", null); throw gemErr(r.status) }
+    const d = await r.json(), c = (d.candidates || [])[0];
+    const t = ((c && c.content && c.content.parts) || []).map(p => p.text || "").join("");
+    if (!t) throw { code: d.promptFeedback && d.promptFeedback.blockReason ? "refused" : "empty_completion" };
+    return t;
+  }
+  const AI = {
+    why() { // "" when AI can be used right now, else the reason
+      if (!APP) return claudeSample ? "" : "noclaude";
+      if (!navigator.onLine) return "offline";
+      return store.get("geminiKey") ? "" : "nokey";
+    },
+    async chat(turns, { onText, signal }) {
+      if (!APP) return (await claudeSample(turns, { cache: false, signal, onText })).text;
+      const contents = [];
+      turns.forEach(t => { const role = t.role === "user" ? "user" : "model", last = contents[contents.length - 1];
+        if (last && last.role === role) last.parts[0].text += "\n\n" + t.content; else contents.push({ role, parts: [{ text: t.content }] }) });
+      const text = await gemCall(contents, false, signal); onText({ text }); return text;
+    },
+    async json(prompt) {
+      if (!APP) return claudeSample.json(prompt);
+      const t = await gemCall([{ role: "user", parts: [{ text: prompt }] }], true);
+      try { return JSON.parse(t.replace(/^```(?:json)?\s*|\s*```$/g, "")) } catch (e) { throw { code: "invalid_json" } }
+    }
+  };
+  const AI_MSG = {
+    offline: "الكوتش وتحليل الأكل محتاجين نت. هيرجعوا لوحدهم أول ما النت يرجع، وباقي التطبيق شغال عادي.",
+    nokey: "عشان تشغّل الكوتش وتحليل الأكل، حط مفتاح Gemini من صفحة السجل في كارت الإعدادات.",
+    noclaude: "الكوتش بيشتغل لما تفتح الصفحة من حسابك على Claude. باقي الموقع شغال عادي."
+  };
+  function aiRefresh() {
+    const w = AI.why(), off = document.getElementById("coach-off");
+    document.body.classList.toggle("no-ai", !!w);
+    if (off) { off.hidden = !w; off.textContent = AI_MSG[w] || ""; document.getElementById("ask").hidden = !!w; document.getElementById("chips-q").hidden = !!w }
+  }
+  addEventListener("online", () => { aiRefresh(); syncAll(false) });
+  addEventListener("offline", aiRefresh);
+
+  // ----- online sync (phone app): one JSON file per month in the viewer's private GitHub repo
+  const b64e = s => { const b = new TextEncoder().encode(s); let x = ""; for (let i = 0; i < b.length; i += 0x8000) x += String.fromCharCode.apply(null, b.subarray(i, i + 0x8000)); return btoa(x) };
+  const b64d = s => new TextDecoder().decode(Uint8Array.from(atob(s.replace(/\s/g, "")), c => c.charCodeAt(0)));
+  let dirty = new Set(store.get("dirty") || []), syncing = false, syncTimer = 0;
+  const ghRepo = () => store.get("ghRepo") || "baksheshwork-bot/gym-data";
+  function markDirty(dateKey) { dirty.add(dateKey.slice(0, 7)); store.set("dirty", [...dirty]); clearTimeout(syncTimer); syncTimer = setTimeout(() => syncAll(false), 2500) }
+  function gh(path, opts) {
+    opts = opts || {};
+    return fetch("https://api.github.com/repos/" + ghRepo() + "/contents/" + path, { method: opts.method || "GET", body: opts.body, cache: "no-store",
+      headers: Object.assign({ "Authorization": "Bearer " + store.get("ghToken"), "Accept": "application/vnd.github+json" }, opts.body ? { "Content-Type": "application/json" } : {}) });
+  }
+  async function syncMonth(m) {
+    for (let attempt = 0; attempt < 3; attempt++) {
+      const r = await gh("data/" + m + ".json");
+      if (!r.ok && r.status !== 404) throw r.status;
+      const j = r.ok ? await r.json() : null, remote = j ? JSON.parse(b64d(j.content) || "{}") : {};
+      const merged = Object.assign({}, remote); let push = false;
+      Object.keys(hist).filter(k => k.startsWith(m)).forEach(k => { if (!remote[k] || (hist[k].ts || 0) > (remote[k].ts || 0)) { merged[k] = hist[k]; push = true } });
+      Object.keys(remote).forEach(k => { if (!hist[k] || (remote[k].ts || 0) > (hist[k].ts || 0)) hist[k] = remote[k] });
+      if (!push) return;
+      const p = await gh("data/" + m + ".json", { method: "PUT", body: JSON.stringify(Object.assign({ message: "sync " + m, content: b64e(JSON.stringify(merged)) }, j ? { sha: j.sha } : {})) });
+      if (p.ok) return;
+      if (p.status !== 409 && p.status !== 422) throw p.status;
+    }
+  }
+  function syncStatus(text, bad) { const el = document.getElementById("sync-st"); if (el) { el.textContent = text; el.classList.toggle("bad", !!bad) } }
+  function lastSyncText() { const t = store.get("lastSync"); return t ? "آخر مزامنة: " + new Date(t).toLocaleString("ar-EG-u-nu-latn", { day: "numeric", month: "short", hour: "numeric", minute: "2-digit" }) : "" }
+  async function syncAll(full) {
+    if (!APP || !store.get("ghToken") || syncing) return;
+    if (!navigator.onLine) { syncStatus("مفيش نت. اللي سجلته محفوظ وهيترفع أول ما النت يرجع."); return }
+    syncing = true; syncStatus("بيزامن...");
+    const before = JSON.stringify(hist[today] || {});
+    try {
+      const months = new Set([...dirty, today.slice(0, 7)]);
+      if (full) {
+        const r = await gh("data");
+        if (r.ok) (await r.json()).forEach(f => { const mm = /^(\d{4}-\d{2})\.json$/.exec(f.name); if (mm) months.add(mm[1]) });
+        else if (r.status !== 404) throw r.status;
+        Object.keys(hist).forEach(k => months.add(k.slice(0, 7)));
+      }
+      for (const m of months) { await syncMonth(m); dirty.delete(m) }
+      store.set("dirty", [...dirty]); store.set("hist", hist);
+      if (full || !store.get("profile")) { const r = await gh("profile.md"); if (r.ok) store.set("profile", b64d((await r.json()).content)) }
+      store.set("lastSync", Date.now()); syncStatus("متزامن ✓ " + lastSyncText());
+      if (JSON.stringify(hist[today] || {}) !== before) reloadToday();
+      if (!document.getElementById("log").hidden) renderLog();
+    } catch (e) {
+      syncStatus(e === 401 ? "مفتاح GitHub مش شغال أو خلص. اعمل مفتاح جديد وحطه هنا." : e === 404 ? "مش لاقي الـ repo. اتأكد من الاسم وإن المفتاح ليه صلاحية عليه." : "المزامنة فشلت. هتتجرب تاني لوحدها.", true);
+    } finally { syncing = false }
+  }
+  addEventListener("visibilitychange", () => { if (document.visibilityState === "visible") syncAll(false) });
   // ----- history: one record per date, kept forever on this device
   let hist = store.get("hist") || {};
   const day = () => hist[today] || (hist[today] = {});
@@ -936,7 +1086,8 @@ figcaption { position: absolute; top: 6px; right: 8px; font-size: 11px; color: #
     d.sets = done.on;
     d.food = { ate: food.ate, snacks: food.snacks, custom: food.custom, extra: food.extra, pick: Object.assign({}, food.pick) };
     d.sum = { k: Math.round(s.k), p: Math.round(s.p), c: Math.round(s.c), f: Math.round(s.f), sets: Object.keys(done.on).filter(k => done.on[k]).length };
-    store.set("hist", hist); store.set("pick", food.pick);
+    d.ts = Date.now();
+    store.set("hist", hist); store.set("pick", food.pick); markDirty(today);
     if (!document.getElementById("log").hidden) renderLog();
   }
 
@@ -1020,6 +1171,11 @@ figcaption { position: absolute; top: 6px; right: 8px; font-size: 11px; color: #
   const T_ = { k: 2450, p: 190, c: 270, f: 60 };
   const fd = day().food || {};
   let food = { ate: fd.ate || {}, snacks: fd.snacks || {}, custom: fd.custom || {}, extra: fd.extra || [], pick: store.get("pick") || {} };
+  function reloadToday() { // today's record changed on another device
+    const d = day(), f = d.food || {};
+    done.on = d.sets || {}; food.ate = f.ate || {}; food.snacks = f.snacks || {}; food.custom = f.custom || {}; food.extra = f.extra || [];
+    refresh(); renderFood();
+  }
   function eaten() {
     const s = { k: 0, p: 0, c: 0, f: 0 }, list = [];
     document.querySelectorAll(".meal[id^='meal-']").forEach(m => {
@@ -1089,10 +1245,11 @@ figcaption { position: absolute; top: 6px; right: 8px; font-size: 11px; color: #
   }
   async function analyze(lx) {
     const slot = lx.dataset.slot, ta = lx.querySelector("textarea"), res = lx.querySelector(".logx-res"), go = lx.querySelector(".logx-go");
-    const text = ta.value.trim(); if (!text || !sample) return;
+    const text = ta.value.trim(); if (!text) return;
+    if (AI.why()) { aiRefresh(); return }
     go.disabled = true; res.innerHTML = '<p class="wait">بيحسب...</p>';
     try {
-      const data = await sample.json(
+      const data = await AI.json(
         "انت أخصائي تغذية. قدّر القيم الغذائية للأكل ده (أكل مصري غالبًا). لو الكمية مش مكتوبة، افترض الكمية المعتادة واكتبها. " + planFor(slot) +
         "\nرد بـ JSON بس بالشكل ده: " + '{"items":[{"name":"بيض مقلي","amount":"2 بيضة","kcal":180,"p":12,"c":1,"f":14}],"note":"جملة قصيرة بالعامية المصرية: مقارنة بالخطة ونصيحة لو فيه"}' +
         "\nالأكل: " + text);
@@ -1107,8 +1264,8 @@ figcaption { position: absolute; top: 6px; right: 8px; font-size: 11px; color: #
         save(); ta.value = ""; res.textContent = ""; lx.querySelector(".logx-body").hidden = true; renderFood();
       };
     } catch (e) {
-      if (["not_granted", "sampling_disabled", "not_declared", "capability_disabled"].includes(e.code)) { document.body.classList.add("no-ai"); res.textContent = ""; }
-      else res.innerHTML = '<p class="none">' + (e.code === "invalid_json" || e.code === "empty_completion" ? "مقدرتش أفهم الأكل ده. اكتبه بتفصيل أكتر (الصنف والكمية)." : e.code === "rate_limited" ? "طلبات كتير ورا بعض. استنى شوية وجرّب تاني." : "حصلت مشكلة في الاتصال. جرّب تاني.") + '</p>';
+      if (["not_granted", "sampling_disabled", "not_declared", "capability_disabled"].includes(e.code)) { claudeSample = null; aiRefresh(); res.textContent = ""; }
+      else res.innerHTML = '<p class="none">' + (e.code === "invalid_json" || e.code === "empty_completion" ? "مقدرتش أفهم الأكل ده. اكتبه بتفصيل أكتر (الصنف والكمية)." : e.code === "rate_limited" ? "طلبات كتير ورا بعض. استنى شوية وجرّب تاني." : e.code === "bad_key" ? "مفتاح Gemini مش شغال. راجعه في الإعدادات في صفحة السجل." : "حصلت مشكلة في الاتصال. جرّب تاني.") + '</p>';
     } finally { go.disabled = false }
   }
   document.addEventListener("click", e => {
@@ -1193,7 +1350,7 @@ figcaption { position: absolute; top: 6px; right: 8px; font-size: 11px; color: #
       const v = parseFloat(document.getElementById("lg-w").value);
       const r = hist[lgSel] || (hist[lgSel] = {});
       if (v >= 30 && v <= 300) r.weight = Math.round(v * 10) / 10; else delete r.weight;
-      store.set("hist", hist); renderLog();
+      r.ts = Date.now(); store.set("hist", hist); markDirty(lgSel); renderLog();
     };
   }
   document.getElementById("lg-cal").addEventListener("click", e => { const c = e.target.closest(".cd[data-date]"); if (c) { lgSel = c.dataset.date; renderLog() } });
@@ -1222,17 +1379,20 @@ figcaption { position: absolute; top: 6px; right: 8px; font-size: 11px; color: #
     try {
       const data = JSON.parse(await f.text());
       if (!data || typeof data.hist !== "object") throw 0;
-      let n = 0; for (const k in data.hist) if (/^\d{4}-\d{2}-\d{2}$/.test(k)) { hist[k] = Object.assign({}, data.hist[k], hist[k]); n++ }
+      let n = 0; for (const k in data.hist) if (/^\d{4}-\d{2}-\d{2}$/.test(k)) { hist[k] = Object.assign({}, data.hist[k], hist[k]); hist[k].ts = Date.now(); dirty.add(k.slice(0, 7)); n++ }
+      store.set("dirty", [...dirty]); syncAll(false);
       store.set("hist", hist); lgMsg.textContent = "رجّعت " + n + " يوم من النسخة."; renderLog();
     } catch (err) { lgMsg.textContent = "الملف ده مش نسخة احتياطية من التطبيق." }
     e.target.value = "";
   };
 
   // ----- coach: chat with Claude, grounded in the plan and today's state
-  const RULES = "";
+  const RULES_BUILTIN = ""; // empty in the public phone app; there it comes from the private repo (profile.md)
+  const RULES_FALLBACK = "انت كوتش تمرين وأكل لشخص مبتدئ هدفه ينشّف ويبني عضل، بيلعب 3 أيام جسم كامل وهدفه حوالي 2450 سعر و190 جم بروتين في اليوم. رد بالعامية المصرية، قصير وعملي. لو فيه وجع قوله يوقف ويروح لدكتور لو مكمل. متقترحش مكملات ولا أدوية.";
+  const rules = () => RULES_BUILTIN || store.get("profile") || RULES_FALLBACK;
   const chat = document.getElementById("chat"), form = document.getElementById("ask"), box = document.getElementById("ask-in");
   const sendB = document.getElementById("send"), stopB = document.getElementById("stop"), micB = document.getElementById("mic");
-  let turns = (store.get("chat") || []).slice(-16), ctl = null, sample = null, busy = false;
+  let turns = (store.get("chat") || []).slice(-16), ctl = null, busy = false;
   const DAYNAMES = ["الأحد", "الاثنين", "التلات", "الأربع", "الخميس", "الجمعة", "السبت"];
   function stateNow() {
     const { s, list } = eaten(), d = new Date();
@@ -1250,30 +1410,31 @@ figcaption { position: absolute; top: 6px; right: 8px; font-size: 11px; color: #
   const MSG = { rate_limited: "طلبات كتير ورا بعض. استنى شوية وجرّب تاني.", session_expired: "محتاج تعمل تسجيل دخول تاني في Claude.",
     refused: "مقدرش أرد على ده. جرّب تسأل بطريقة تانية.", empty_completion: "مفيش رد. جرّب تسأل بطريقة أبسط." };
   async function ask(text) {
-    if (!sample || busy || !text.trim()) return;
+    if (busy || !text.trim()) return;
+    if (AI.why()) { aiRefresh(); return }
     turns.push({ role: "user", content: text.trim() }); bubble("me", text.trim()); box.value = "";
     const out = bubble("bot wait", "بيفكر...");
     setBusy(true); ctl = new AbortController();
     try {
-      const { text: ans } = await sample([{ role: "user", content: RULES + "\n\n" + stateNow() }, ...turns.slice(-12)],
-        { cache: false, signal: ctl.signal, onText: ({ text }) => { out.classList.remove("wait"); out.textContent = text; out.scrollIntoView({ block: "nearest" }) } });
+      const ans = await AI.chat([{ role: "user", content: rules() + "\n\n" + stateNow() }, ...turns.slice(-12)],
+        { signal: ctl.signal, onText: ({ text }) => { out.classList.remove("wait"); out.textContent = text; out.scrollIntoView({ block: "nearest" }) } });
       turns.push({ role: "assistant", content: ans });
     } catch (e) {
       out.classList.remove("wait");
-      if (e.code === "not_granted" || e.code === "sampling_disabled" || e.code === "not_declared" || e.code === "capability_disabled") { out.remove(); turns.pop(); coachOff(); }
+      if (e.code === "not_granted" || e.code === "sampling_disabled" || e.code === "not_declared" || e.code === "capability_disabled") { out.remove(); turns.pop(); claudeSample = null; aiRefresh(); }
+      else if (e.code === "bad_key") { out.textContent = "مفتاح Gemini مش شغال. راجعه في الإعدادات في صفحة السجل."; turns.pop() }
       else if (e.code === "cancelled") { out.textContent = e.text || "اتلغى."; if (e.text) turns.push({ role: "assistant", content: e.text }) }
       else { out.textContent = (e.text ? e.text + "\n\n" : "") + (MSG[e.code] || "حصلت مشكلة في الاتصال. جرّب تاني."); if (e.text) turns.push({ role: "assistant", content: e.text }) }
     } finally { setBusy(false); store.set("chat", turns.slice(-16)) }
   }
-  function coachOff() { document.body.classList.add("no-ai"); document.getElementById("coach-off").hidden = false; form.hidden = true; document.getElementById("chips-q").hidden = true }
   form.addEventListener("submit", e => { e.preventDefault(); ask(box.value) });
   box.addEventListener("keydown", e => { if (e.key === "Enter" && !e.shiftKey) { e.preventDefault(); ask(box.value) } });
   document.querySelectorAll(".q").forEach(b => b.onclick = () => ask(b.textContent));
   stopB.onclick = () => ctl && ctl.abort();
   document.getElementById("chat-clear").onclick = () => { if (busy) return; turns = []; store.set("chat", turns); renderChat() };
-  setBusy(true);
-  if (window.claude && claude.use) {
-    claude.use("sample").then(s => { sample = s; setBusy(false); if (!s) coachOff() });
+  aiRefresh();
+  if (!APP && window.claude && claude.use) {
+    claude.use("sample").then(s => { claudeSample = s; aiRefresh() });
     claude.use("dictation").then(d => {
       if (!d) return;
       let lang = "ar", base = "";
@@ -1292,7 +1453,31 @@ figcaption { position: absolute; top: 6px; right: 8px; font-size: 11px; color: #
         d.start(lang ? { language: lang } : undefined).catch(e => { if (e && e.code === "not_granted") micB.hidden = true });
       };
     });
-  } else coachOff();
+  }
+
+  // ----- settings (phone app): GitHub token for online saving, Gemini key for AI
+  if (APP) {
+    const $ = id => document.getElementById(id);
+    const mask = v => v ? "محفوظ (" + v.slice(0, 4) + "…" + v.slice(-4) + ")" : "مش متحفوظ";
+    function showKeys() { $("gh-state").textContent = mask(store.get("ghToken")); $("gem-state").textContent = mask(store.get("geminiKey")); $("gh-repo").value = ghRepo() }
+    showKeys(); syncStatus(store.get("ghToken") ? lastSyncText() : "لسه مش متوصل بـ GitHub. السجل متحفوظ على الموبايل لحد ما توصله.");
+    $("gh-save").onclick = () => {
+      const t = $("gh-token").value.trim(), rp = $("gh-repo").value.trim();
+      if (t) store.set("ghToken", t);
+      if (/^[\w.-]+\/[\w.-]+$/.test(rp)) store.set("ghRepo", rp);
+      $("gh-token").value = ""; showKeys(); syncAll(true);
+    };
+    $("gem-save").onclick = async () => {
+      const k = $("gem-key").value.trim(); if (!k) return;
+      store.set("geminiKey", k); store.set("gemModel", null); $("gem-key").value = ""; showKeys();
+      $("gem-msg").textContent = "بيجرّب المفتاح...";
+      try { const m = await gemModel(k); $("gem-msg").textContent = "المفتاح شغال ✓ (" + m.replace("models/", "") + ")" }
+      catch (e) { $("gem-msg").textContent = e.code === "bad_key" ? "المفتاح ده مش شغال. انسخه تاني من Google AI Studio." : "مقدرتش أجرّب المفتاح دلوقتي. اتأكد إن معاك نت." }
+      aiRefresh();
+    };
+    $("keys-clear").onclick = () => { store.set("ghToken", null); store.set("geminiKey", null); store.set("gemModel", null); showKeys(); aiRefresh(); syncStatus("اتمسحت المفاتيح من الموبايل ده.") };
+    syncAll(true);
+  }
 })();
 </script>
 <script>if ("serviceWorker" in navigator) addEventListener("load", () => navigator.serviceWorker.register("sw.js").catch(() => {}));</script></body></html>
