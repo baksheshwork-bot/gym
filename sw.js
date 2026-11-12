@@ -1,5 +1,5 @@
 // Offline cache for the gym app. The version changes whenever any file changes.
-const V = "gym-c58a13546e";
+const V = "gym-93b974fe59";
 const FILES = ["./", "index.html", "fonts.css", "manifest.webmanifest", "icon-180.png", "icon-192.png", "icon-512.png", "fonts/f0.woff2", "fonts/f1.woff2", "fonts/f2.woff2", "fonts/f3.woff2", "fonts/f4.woff2", "fonts/f5.woff2", "fonts/f6.woff2", "fonts/f7.woff2", "fonts/f8.woff2", "fonts/f9.woff2", "fonts/f10.woff2", "fonts/f11.woff2"];
 self.addEventListener("install", e => {
   e.waitUntil(caches.open(V).then(c => c.addAll(FILES)).then(() => self.skipWaiting()));
