@@ -979,11 +979,14 @@ figcaption { position: absolute; top: 6px; right: 8px; font-size: 11px; color: #
     // 1) Gemini API: list the models this key can use and take the newest stable Flash
     const r = await fetch(GEM + "models?pageSize=200", { headers: { "x-goog-api-key": key } });
     if (r.ok) {
-      const ms = ((await r.json()).models || []).filter(m => (m.supportedGenerationMethods || []).includes("generateContent"));
-      const ver = m => parseFloat((m.name.match(/gemini-([\d.]+)/) || [0, 0])[1]);
-      const stable = ms.filter(m => /^models\/gemini-[\d.]+-flash$/.test(m.name)).sort((a, b) => ver(b) - ver(a));
-      const pick = (stable[0] || ms.find(m => /gemini.*flash/.test(m.name)) || {}).name;
-      if (pick) { const m = { kind: "gl", model: pick }; store.set("gemModel", m); return m }
+      const names = ((await r.json()).models || []).filter(m => (m.supportedGenerationMethods || []).includes("generateContent")).map(m => m.name);
+      const ver = n => parseFloat((n.match(/gemini-([\d.]+)/) || [0, 0])[1]);
+      // most dependable first: the "latest Flash" alias, then 2.5 Flash, then other stable Flash versions, newest first
+      const order = ["models/gemini-flash-latest", "models/gemini-2.5-flash"].filter(n => names.includes(n))
+        .concat(names.filter(n => /^models\/gemini-[\d.]+-flash$/.test(n) && n !== "models/gemini-2.5-flash").sort((a, b) => ver(b) - ver(a)))
+        .concat(names.filter(n => /gemini.*flash/.test(n) && !/image|tts|audio|live|thinking|lite/.test(n)));
+      const cands = [...new Set(order)].slice(0, 5);
+      if (cands.length) { const m = { kind: "gl", model: cands[0], cands }; store.set("gemModel", m); return m }
     } else firstErr = await gemErr(r);
     // 2) Vertex AI express: no model list, so probe the usual Flash names with a tiny request
     for (const name of FLASH) {
@@ -996,14 +999,21 @@ figcaption { position: absolute; top: 6px; right: 8px; font-size: 11px; color: #
   }
   async function gemCall(contents, json, signal) {
     const key = store.get("geminiKey");
-    let r;
+    const body = JSON.stringify({ contents, generationConfig: json ? { responseMimeType: "application/json" } : {} });
+    let r, model, lastErr = null;
     try {
-      const model = await gemModel(key);
-      r = await fetch(gemUrl(key, model), { method: "POST", signal,
-        headers: gemHeaders(key, model),
-        body: JSON.stringify({ contents, generationConfig: json ? { responseMimeType: "application/json" } : {} }) });
-    } catch (e) { throw e && e.code ? e : { code: e && e.name === "AbortError" ? "cancelled" : "upstream_error" } }
-    if (!r.ok) { if (r.status === 404) store.set("gemModel", null); throw await gemErr(r) }
+      model = await gemModel(key);
+      // if a model is missing or busy, fall through to the next candidate and remember the one that answered
+      const tries = model.cands ? [model.model, ...model.cands.filter(n => n !== model.model)] : [model.model];
+      for (const name of tries.slice(0, 4)) {
+        const m = Object.assign({}, model, { model: name });
+        r = await fetch(gemUrl(key, m), { method: "POST", signal, headers: gemHeaders(key, m), body });
+        if (r.ok) { if (name !== model.model) store.set("gemModel", m); break }
+        lastErr = await gemErr(r);
+        if (![404, 500, 503].includes(r.status)) break;
+      }
+    } catch (e) { throw e && e.code ? e : { code: e && e.name === "AbortError" ? "cancelled" : "upstream_error", detail: String(e && e.message || "") } }
+    if (!r.ok) { if (r.status === 404) store.set("gemModel", null); throw lastErr }
     const d = await r.json(), c = (d.candidates || [])[0];
     const t = ((c && c.content && c.content.parts) || []).map(p => p.text || "").join("");
     if (!t) throw { code: d.promptFeedback && d.promptFeedback.blockReason ? "refused" : "empty_completion" };
@@ -1028,6 +1038,7 @@ figcaption { position: absolute; top: 6px; right: 8px; font-size: 11px; color: #
       try { return JSON.parse(t.replace(/^```(?:json)?\s*|\s*```$/g, "")) } catch (e) { throw { code: "invalid_json" } }
     }
   };
+  const errDetail = e => (e && (e.status || e.detail)) ? " (" + [e.status ? "كود " + e.status : "", (e.detail || "").slice(0, 200)].filter(Boolean).join(": ") + ")" : "";
   const AI_MSG = {
     offline: "الكوتش وتحليل الأكل محتاجين نت. هيرجعوا لوحدهم أول ما النت يرجع، وباقي التطبيق شغال عادي.",
     nokey: "عشان تشغّل الكوتش وتحليل الأكل، حط مفتاح Gemini من صفحة السجل في كارت الإعدادات.",
@@ -1286,7 +1297,11 @@ figcaption { position: absolute; top: 6px; right: 8px; font-size: 11px; color: #
       };
     } catch (e) {
       if (["not_granted", "sampling_disabled", "not_declared", "capability_disabled"].includes(e.code)) { claudeSample = null; aiRefresh(); res.textContent = ""; }
-      else res.innerHTML = '<p class="none">' + (e.code === "invalid_json" || e.code === "empty_completion" ? "مقدرتش أفهم الأكل ده. اكتبه بتفصيل أكتر (الصنف والكمية)." : e.code === "rate_limited" ? "طلبات كتير ورا بعض. استنى شوية وجرّب تاني." : e.code === "bad_key" ? "مفتاح Gemini مش شغال. راجعه في الإعدادات في صفحة السجل." : "حصلت مشكلة في الاتصال. جرّب تاني.") + '</p>';
+      else {
+        const p = document.createElement("p"); p.className = "none";
+        p.textContent = (e.code === "invalid_json" || e.code === "empty_completion" ? "مقدرتش أفهم الأكل ده. اكتبه بتفصيل أكتر (الصنف والكمية)." : e.code === "rate_limited" ? "طلبات كتير ورا بعض. استنى شوية وجرّب تاني." : e.code === "bad_key" ? "مفتاح Gemini مش شغال. راجعه في الإعدادات في صفحة السجل." : "حصلت مشكلة في الاتصال. جرّب تاني.") + errDetail(e);
+        res.textContent = ""; res.append(p);
+      }
     } finally { go.disabled = false }
   }
   document.addEventListener("click", e => {
@@ -1445,7 +1460,7 @@ figcaption { position: absolute; top: 6px; right: 8px; font-size: 11px; color: #
       if (e.code === "not_granted" || e.code === "sampling_disabled" || e.code === "not_declared" || e.code === "capability_disabled") { out.remove(); turns.pop(); claudeSample = null; aiRefresh(); }
       else if (e.code === "bad_key") { out.textContent = "مفتاح Gemini مش شغال. راجعه في الإعدادات في صفحة السجل."; turns.pop() }
       else if (e.code === "cancelled") { out.textContent = e.text || "اتلغى."; if (e.text) turns.push({ role: "assistant", content: e.text }) }
-      else { out.textContent = (e.text ? e.text + "\n\n" : "") + (MSG[e.code] || "حصلت مشكلة في الاتصال. جرّب تاني."); if (e.text) turns.push({ role: "assistant", content: e.text }) }
+      else { out.textContent = (e.text ? e.text + "\n\n" : "") + (MSG[e.code] || "حصلت مشكلة في الاتصال. جرّب تاني.") + errDetail(e); if (e.text) turns.push({ role: "assistant", content: e.text }) }
     } finally { setBusy(false); store.set("chat", turns.slice(-16)) }
   }
   form.addEventListener("submit", e => { e.preventDefault(); ask(box.value) });
@@ -1492,11 +1507,15 @@ figcaption { position: absolute; top: 6px; right: 8px; font-size: 11px; color: #
       const k = $("gem-key").value.trim(); if (!k) return;
       store.set("geminiKey", k); store.set("gemModel", null); $("gem-key").value = ""; showKeys();
       $("gem-msg").textContent = "بيجرّب المفتاح...";
-      try { const m = await gemModel(k); $("gem-msg").textContent = "المفتاح شغال ✓ (" + m.model.replace("models/", "") + (m.kind === "vx" ? " · Vertex" : "") + ")" }
+      try {
+        await gemCall([{ role: "user", parts: [{ text: "رد بكلمة واحدة: تمام" }] }], false); // a real request, same path as the coach and food analysis
+        const m = store.get("gemModel");
+        $("gem-msg").textContent = "المفتاح شغال ✓ (" + m.model.replace("models/", "") + (m.kind === "vx" ? " · Vertex" : "") + ")";
+      }
       catch (e) {
         store.set("gemModel", null);
         $("gem-msg").textContent = (e.code === "bad_key" ? "المفتاح ده مش شغال." : e.code === "rate_limited" ? "المفتاح اتقبل بس فيه ضغط دلوقتي. جرّب كمان دقيقة." : "مقدرتش أجرّب المفتاح دلوقتي. اتأكد إن معاك نت.") +
-          (e.detail ? " رسالة جوجل: " + e.detail.slice(0, 300) : "");
+          errDetail(e);
       }
       aiRefresh();
     };
@@ -1505,4 +1524,9 @@ figcaption { position: absolute; top: 6px; right: 8px; font-size: 11px; color: #
   }
 })();
 </script>
-<script>if ("serviceWorker" in navigator) addEventListener("load", () => navigator.serviceWorker.register("sw.js").catch(() => {}));</script></body></html>
+<script>if ("serviceWorker" in navigator) {
+  // when an update takes over (not the very first install), reload once so the new version shows right away
+  const hadController = !!navigator.serviceWorker.controller; let reloaded = false;
+  navigator.serviceWorker.addEventListener("controllerchange", () => { if (hadController && !reloaded) { reloaded = true; location.reload() } });
+  addEventListener("load", () => navigator.serviceWorker.register("sw.js").catch(() => {}));
+}</script></body></html>
