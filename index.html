@@ -962,8 +962,21 @@ figcaption { position: absolute; top: 6px; right: 8px; font-size: 11px; color: #
   let claudeSample = null;
   const GEM = "https://generativelanguage.googleapis.com/v1beta/";
   function gemErr(status) { return { code: status === 429 ? "rate_limited" : [400, 401, 403].includes(status) ? "bad_key" : "upstream_error" } }
+  // AI Studio keys start with "AIza"; Vertex AI express keys start with "AQ." and use another endpoint
+  const VTX = "https://aiplatform.googleapis.com/v1/publishers/google/models/";
+  const isVertex = k => /^AQ\./.test(k || "");
+  const gemUrl = (key, model) => (isVertex(key) ? VTX + model : GEM + model) + ":generateContent?key=" + encodeURIComponent(key);
   async function gemModel(key) {
     const cached = store.get("gemModel"); if (cached) return cached;
+    if (isVertex(key)) { // no model list here: probe the usual Flash names with a tiny request
+      for (const m of ["gemini-2.5-flash", "gemini-3-flash", "gemini-3.0-flash", "gemini-flash-latest", "gemini-2.0-flash"]) {
+        const r = await fetch(gemUrl(key, m), { method: "POST", headers: { "Content-Type": "application/json" },
+          body: JSON.stringify({ contents: [{ role: "user", parts: [{ text: "hi" }] }], generationConfig: { maxOutputTokens: 8 } }) });
+        if (r.ok) { store.set("gemModel", m); return m }
+        if (r.status !== 404) throw gemErr(r.status);
+      }
+      throw { code: "upstream_error" };
+    }
     const r = await fetch(GEM + "models?pageSize=200&key=" + encodeURIComponent(key));
     if (!r.ok) throw gemErr(r.status);
     const ms = ((await r.json()).models || []).filter(m => (m.supportedGenerationMethods || []).includes("generateContent"));
@@ -978,7 +991,7 @@ figcaption { position: absolute; top: 6px; right: 8px; font-size: 11px; color: #
     let r;
     try {
       const model = await gemModel(key);
-      r = await fetch(GEM + model + ":generateContent?key=" + encodeURIComponent(key), { method: "POST", signal,
+      r = await fetch(gemUrl(key, model), { method: "POST", signal,
         headers: { "Content-Type": "application/json" },
         body: JSON.stringify({ contents, generationConfig: json ? { responseMimeType: "application/json" } : {} }) });
     } catch (e) { throw e && e.code ? e : { code: e && e.name === "AbortError" ? "cancelled" : "upstream_error" } }
@@ -1472,7 +1485,7 @@ figcaption { position: absolute; top: 6px; right: 8px; font-size: 11px; color: #
       store.set("geminiKey", k); store.set("gemModel", null); $("gem-key").value = ""; showKeys();
       $("gem-msg").textContent = "بيجرّب المفتاح...";
       try { const m = await gemModel(k); $("gem-msg").textContent = "المفتاح شغال ✓ (" + m.replace("models/", "") + ")" }
-      catch (e) { $("gem-msg").textContent = e.code === "bad_key" ? "المفتاح ده مش شغال. انسخه تاني من Google AI Studio." : "مقدرتش أجرّب المفتاح دلوقتي. اتأكد إن معاك نت." }
+      catch (e) { store.set("gemModel", null); $("gem-msg").textContent = e.code === "bad_key" ? "المفتاح ده مش شغال. انسخه تاني من Google AI Studio." : e.code === "rate_limited" ? "المفتاح اتقبل بس فيه ضغط دلوقتي. جرّب كمان دقيقة." : "مقدرتش أجرّب المفتاح دلوقتي. اتأكد إن معاك نت." }
       aiRefresh();
     };
     $("keys-clear").onclick = () => { store.set("ghToken", null); store.set("geminiKey", null); store.set("gemModel", null); showKeys(); aiRefresh(); syncStatus("اتمسحت المفاتيح من الموبايل ده.") };
