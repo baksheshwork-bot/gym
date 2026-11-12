@@ -961,30 +961,36 @@ figcaption { position: absolute; top: 6px; right: 8px; font-size: 11px; color: #
   // ----- AI: Claude inside the artifact viewer; Gemini with the viewer's own key in the phone app
   let claudeSample = null;
   const GEM = "https://generativelanguage.googleapis.com/v1beta/";
-  function gemErr(status) { return { code: status === 429 ? "rate_limited" : [400, 401, 403].includes(status) ? "bad_key" : "upstream_error" } }
-  // AI Studio keys start with "AIza"; Vertex AI express keys start with "AQ." and use another endpoint
+  async function gemErr(r) { // keep Google's own message so a failing key can be diagnosed on screen
+    let detail = ""; try { const j = await r.json(); detail = (j.error && j.error.message) || "" } catch (e) {}
+    return { code: r.status === 429 ? "rate_limited" : [400, 401, 403].includes(r.status) ? "bad_key" : "upstream_error", status: r.status, detail };
+  }
+  // Two Google endpoints accept API keys: the Gemini API (AI Studio) and Vertex AI (express mode).
+  // Key formats overlap, so try both and remember which one answered.
   const VTX = "https://aiplatform.googleapis.com/v1/publishers/google/models/";
-  const isVertex = k => /^AQ\./.test(k || "");
-  const gemUrl = (key, model) => (isVertex(key) ? VTX + model : GEM + model) + ":generateContent?key=" + encodeURIComponent(key);
+  const FLASH = ["gemini-2.5-flash", "gemini-3-flash", "gemini-3.0-flash", "gemini-flash-latest", "gemini-2.0-flash"];
+  const gemUrl = (key, m) => (m.kind === "vx" ? VTX + m.model : GEM + m.model) + ":generateContent?key=" + encodeURIComponent(key);
+  const probeBody = JSON.stringify({ contents: [{ role: "user", parts: [{ text: "hi" }] }], generationConfig: { maxOutputTokens: 8 } });
   async function gemModel(key) {
-    const cached = store.get("gemModel"); if (cached) return cached;
-    if (isVertex(key)) { // no model list here: probe the usual Flash names with a tiny request
-      for (const m of ["gemini-2.5-flash", "gemini-3-flash", "gemini-3.0-flash", "gemini-flash-latest", "gemini-2.0-flash"]) {
-        const r = await fetch(gemUrl(key, m), { method: "POST", headers: { "Content-Type": "application/json" },
-          body: JSON.stringify({ contents: [{ role: "user", parts: [{ text: "hi" }] }], generationConfig: { maxOutputTokens: 8 } }) });
-        if (r.ok) { store.set("gemModel", m); return m }
-        if (r.status !== 404) throw gemErr(r.status);
-      }
-      throw { code: "upstream_error" };
-    }
+    const cached = store.get("gemModel"); if (cached && cached.kind) return cached;
+    let firstErr = null;
+    // 1) Gemini API: list the models this key can use and take the newest stable Flash
     const r = await fetch(GEM + "models?pageSize=200&key=" + encodeURIComponent(key));
-    if (!r.ok) throw gemErr(r.status);
-    const ms = ((await r.json()).models || []).filter(m => (m.supportedGenerationMethods || []).includes("generateContent"));
-    const ver = m => parseFloat((m.name.match(/gemini-([\d.]+)/) || [0, 0])[1]);
-    const stable = ms.filter(m => /^models\/gemini-[\d.]+-flash$/.test(m.name)).sort((a, b) => ver(b) - ver(a));
-    const pick = (stable[0] || ms.find(m => /gemini.*flash/.test(m.name)) || {}).name;
-    if (!pick) throw { code: "upstream_error" };
-    store.set("gemModel", pick); return pick;
+    if (r.ok) {
+      const ms = ((await r.json()).models || []).filter(m => (m.supportedGenerationMethods || []).includes("generateContent"));
+      const ver = m => parseFloat((m.name.match(/gemini-([\d.]+)/) || [0, 0])[1]);
+      const stable = ms.filter(m => /^models\/gemini-[\d.]+-flash$/.test(m.name)).sort((a, b) => ver(b) - ver(a));
+      const pick = (stable[0] || ms.find(m => /gemini.*flash/.test(m.name)) || {}).name;
+      if (pick) { const m = { kind: "gl", model: pick }; store.set("gemModel", m); return m }
+    } else firstErr = await gemErr(r);
+    // 2) Vertex AI express: no model list, so probe the usual Flash names with a tiny request
+    for (const name of FLASH) {
+      const m = { kind: "vx", model: name };
+      const v = await fetch(gemUrl(key, m), { method: "POST", headers: { "Content-Type": "application/json" }, body: probeBody });
+      if (v.ok) { store.set("gemModel", m); return m }
+      if (v.status !== 404) { const e = await gemErr(v); throw (firstErr && firstErr.code !== "bad_key") ? firstErr : Object.assign(e, { detail: [firstErr && firstErr.detail, e.detail].filter(Boolean).join(" | ") }) }
+    }
+    throw firstErr || { code: "upstream_error" };
   }
   async function gemCall(contents, json, signal) {
     const key = store.get("geminiKey");
@@ -995,7 +1001,7 @@ figcaption { position: absolute; top: 6px; right: 8px; font-size: 11px; color: #
         headers: { "Content-Type": "application/json" },
         body: JSON.stringify({ contents, generationConfig: json ? { responseMimeType: "application/json" } : {} }) });
     } catch (e) { throw e && e.code ? e : { code: e && e.name === "AbortError" ? "cancelled" : "upstream_error" } }
-    if (!r.ok) { if (r.status === 404) store.set("gemModel", null); throw gemErr(r.status) }
+    if (!r.ok) { if (r.status === 404) store.set("gemModel", null); throw await gemErr(r) }
     const d = await r.json(), c = (d.candidates || [])[0];
     const t = ((c && c.content && c.content.parts) || []).map(p => p.text || "").join("");
     if (!t) throw { code: d.promptFeedback && d.promptFeedback.blockReason ? "refused" : "empty_completion" };
@@ -1484,8 +1490,12 @@ figcaption { position: absolute; top: 6px; right: 8px; font-size: 11px; color: #
       const k = $("gem-key").value.trim(); if (!k) return;
       store.set("geminiKey", k); store.set("gemModel", null); $("gem-key").value = ""; showKeys();
       $("gem-msg").textContent = "بيجرّب المفتاح...";
-      try { const m = await gemModel(k); $("gem-msg").textContent = "المفتاح شغال ✓ (" + m.replace("models/", "") + ")" }
-      catch (e) { store.set("gemModel", null); $("gem-msg").textContent = e.code === "bad_key" ? "المفتاح ده مش شغال. انسخه تاني من Google AI Studio." : e.code === "rate_limited" ? "المفتاح اتقبل بس فيه ضغط دلوقتي. جرّب كمان دقيقة." : "مقدرتش أجرّب المفتاح دلوقتي. اتأكد إن معاك نت." }
+      try { const m = await gemModel(k); $("gem-msg").textContent = "المفتاح شغال ✓ (" + m.model.replace("models/", "") + (m.kind === "vx" ? " · Vertex" : "") + ")" }
+      catch (e) {
+        store.set("gemModel", null);
+        $("gem-msg").textContent = (e.code === "bad_key" ? "المفتاح ده مش شغال." : e.code === "rate_limited" ? "المفتاح اتقبل بس فيه ضغط دلوقتي. جرّب كمان دقيقة." : "مقدرتش أجرّب المفتاح دلوقتي. اتأكد إن معاك نت.") +
+          (e.detail ? " رسالة جوجل: " + e.detail.slice(0, 300) : "");
+      }
       aiRefresh();
     };
     $("keys-clear").onclick = () => { store.set("ghToken", null); store.set("geminiKey", null); store.set("gemModel", null); showKeys(); aiRefresh(); syncStatus("اتمسحت المفاتيح من الموبايل ده.") };
