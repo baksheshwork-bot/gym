@@ -116,53 +116,6 @@ figcaption { position: absolute; top: 6px; right: 8px; font-size: 11px; color: #
 .foot { color: var(--muted); font-size: 12.5px; margin-top: 22px }
 .tab svg { width: 20px; height: 20px; display: block; margin-block: 2px }
 .sr { position: absolute; width: 1px; height: 1px; overflow: hidden; clip: rect(0 0 0 0) }
-/* food */
-.track { background: var(--surface); border: 1px solid var(--line); border-radius: 16px; padding: 12px 14px; margin-bottom: 14px; display: grid; gap: 8px }
-.bar-row { display: grid; grid-template-columns: 52px 1fr auto; align-items: center; gap: 10px; font-size: 13px }
-.bl { color: var(--muted) }
-.bt { height: 10px; background: var(--bg); border-radius: 5px; overflow: hidden }
-.bt i { display: block; height: 100%; width: 0; border-radius: 5px; background: var(--accent); transition: width .3s }
-.bt i.p { background: var(--prot) } .bt i.c { background: var(--carb) } .bt i.f { background: var(--fat) }
-.bt i.over { background: var(--warn) }
-.bv { font-variant-numeric: tabular-nums; color: var(--muted); white-space: nowrap }
-.bv b { color: var(--ink); font-family: var(--display) }
-.left { margin: 2px 0 0; font-weight: 600 }
-.meal { background: var(--surface); border: 1px solid var(--line); border-radius: 16px; padding: 14px; display: flex; flex-direction: column; gap: 10px; min-width: 0 }
-.meal.complete { border-color: var(--done) }
-.meal.complete .ex-n { background: var(--done) }
-.meal-h { display: flex; gap: 10px; align-items: center }
-.meal-h .ex-t { flex: 1 }
-.ate { border: 2px solid var(--done); background: var(--surface); color: var(--done); border-radius: 10px; padding: 6px 12px; font: 600 14px var(--body); cursor: pointer; white-space: nowrap }
-.ate[aria-pressed="true"] { background: var(--done); color: #fff }
-.seg { display: grid; grid-template-columns: repeat(3, 1fr); gap: 4px; background: var(--bg); padding: 4px; border-radius: 10px }
-.pick { border: none; background: none; color: var(--muted); border-radius: 8px; padding: 6px; font: 600 14px var(--body); cursor: pointer }
-.pick[aria-pressed="true"] { background: var(--surface); color: var(--ink); box-shadow: 0 1px 3px rgba(0,0,0,.12) }
-.tbl { overflow-x: auto }
-.tbl table { width: 100%; border-collapse: collapse; font-size: 13.5px; font-variant-numeric: tabular-nums }
-.tbl th { font-size: 12px; color: var(--muted); font-weight: 600; padding: 4px 6px; border-bottom: 1px solid var(--line); text-align: center; white-space: nowrap }
-.tbl th:first-child { text-align: right }
-.tbl td { padding: 5px 6px; border-bottom: 1px solid var(--line); text-align: center; font-weight: 600 }
-.tbl td.it { text-align: right; font-weight: 500; min-width: 120px }
-.tbl td.it span { display: block; font-size: 12px; color: var(--muted) }
-.tbl .p { color: var(--prot) } .tbl .c { color: var(--carb) } .tbl .f { color: var(--fat) }
-.tbl tr.tot td { background: var(--accent-soft); border-bottom: none; font-family: var(--display) }
-.tbl td.grp { color: var(--muted); font-size: 12px; font-weight: 500; white-space: nowrap }
-.h2s { font-size: 21px; margin: 26px 0 10px }
-.h2s small { font-family: var(--body); font-size: 13px; font-weight: 400; color: var(--muted); margin-inline-start: 6px }
-.snacks { list-style: none; margin: 0; padding: 0; display: grid; gap: 8px }
-.snack { background: var(--surface); border: 1px solid var(--line); border-radius: 12px; padding: 10px 14px; display: flex; justify-content: space-between; align-items: center; gap: 10px }
-.sn-t { display: grid; min-width: 0 } .sn-t span { color: var(--muted); font-size: 13px }
-.sn-c { display: flex; align-items: center; gap: 8px }
-.sn-btn { width: 36px; height: 36px; border-radius: 50%; border: 1px solid var(--line); background: var(--bg); color: var(--ink); font: 600 18px var(--display); cursor: pointer }
-.sn-n { min-width: 18px; text-align: center; font-family: var(--display); font-weight: 800; font-variant-numeric: tabular-nums }
-.search { display: flex; align-items: center; gap: 10px; background: var(--surface); border: 1px solid var(--line); border-radius: 12px; padding: 4px 6px 4px 14px; margin-bottom: 10px }
-.search span { color: var(--muted); font-size: 13px }
-.search input { flex: 1; min-width: 0; border: none; background: none; color: var(--ink); font: 15px var(--body); padding: 8px 4px; outline: none }
-.search:focus-within { border-color: var(--accent) }
-.swaps { background: var(--surface); border: 1px solid var(--line); border-radius: 12px; padding: 4px 6px }
-.none { color: var(--muted); margin: 8px 0 }
-.rules { margin-top: 20px; background: var(--surface); border: 1px solid var(--line); border-radius: 16px; padding: 12px 16px }
-.rules ul { margin: 6px 0 0; padding-inline-start: 18px }
 .no-ai .ai { display: none }
 .app-only { display: none }
 .app .app-only { display: grid }
@@ -227,24 +180,6 @@ figcaption { position: absolute; top: 6px; right: 8px; font-size: 11px; color: #
 .logx .tbl td.it { min-width: 0 }
 .logx .tbl td, .logx .tbl th { padding-inline: 4px }
 .meal.extra { padding: 12px }
-/* coach */
-.chips-q { display: flex; flex-wrap: wrap; gap: 8px; margin-bottom: 12px }
-.q { border: 1px solid var(--line); background: var(--surface); color: var(--ink); border-radius: 999px; padding: 6px 12px; font: 14px var(--body); cursor: pointer; text-align: right }
-.q:hover { border-color: var(--accent) }
-.q:disabled { opacity: .5; cursor: default }
-.chat { display: flex; flex-direction: column; gap: 10px; margin-bottom: 12px }
-.msg { max-width: 88%; padding: 10px 14px; border-radius: 16px; white-space: pre-wrap; overflow-wrap: anywhere; line-height: 1.7 }
-.msg.me { align-self: flex-start; background: var(--navy); color: #fff; border-end-start-radius: 4px }
-.msg.bot { align-self: flex-end; background: var(--surface); border: 1px solid var(--line); border-end-end-radius: 4px }
-.msg.wait { color: var(--muted) }
-.ask { position: sticky; bottom: calc(10px + env(safe-area-inset-bottom, 0px)); background: var(--surface); border: 1px solid var(--line); border-radius: 16px; padding: 10px; display: grid; gap: 8px; box-shadow: 0 6px 20px rgba(0,0,0,.08) }
-.ask textarea { width: 100%; resize: none; border: none; background: none; color: var(--ink); font: 15px/1.6 var(--body); outline: none }
-.ask-b { display: flex; justify-content: flex-end; gap: 8px }
-.ask-b button { border-radius: 10px; padding: 8px 16px; font: 600 14px var(--body); cursor: pointer }
-#send { border: none; background: var(--accent); color: var(--accent-ink) }
-#send:disabled { opacity: .5; cursor: default }
-.ghost { border: 1px solid var(--line); background: none; color: var(--ink) }
-#mic[aria-pressed="true"] { background: var(--warn); border-color: var(--warn); color: #fff }
 @media (max-width: 460px) {
   .top .wrap { flex-direction: column; align-items: stretch; gap: 8px }
   .tabs { justify-content: stretch; gap: 4px } .tab { flex: 1; min-width: 0; padding: 4px 2px }
@@ -253,8 +188,8 @@ figcaption { position: absolute; top: 6px; right: 8px; font-size: 11px; color: #
 </style>
 
 <header class="top"><div class="wrap">
-  <div class="brand">تمارين الجيم<small>تمرين · أكل · سجل · كوتش</small></div>
-  <nav class="tabs" aria-label="أقسام الموقع"><a class="tab" href="#day-a"><b>A</b><span>السبت</span></a><a class="tab" href="#day-b"><b>B</b><span>الاثنين</span></a><a class="tab" href="#day-c"><b>C</b><span>الأربع</span></a><a class="tab" href="#food"><b><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M7 3v8m-3-8v5a3 3 0 0 0 6 0V3M7 11v10M17 3c-2 1-3 4-3 7h3v11" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg></b><span>الأكل</span></a><a class="tab" href="#log"><b><svg viewBox="0 0 24 24" aria-hidden="true"><rect x="3.5" y="5" width="17" height="15" rx="2.5" fill="none" stroke="currentColor" stroke-width="2"/><path d="M3.5 10h17M8 3v4M16 3v4" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"/></svg></b><span>السجل</span></a><a class="tab" href="#coach"><b><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M4 5h16v11H9l-5 4z" fill="none" stroke="currentColor" stroke-width="2" stroke-linejoin="round"/></svg></b><span>الكوتش</span></a></nav>
+  <div class="brand">تمارين الجيم<small>3 أيام جسم كامل · سجل</small></div>
+  <nav class="tabs" aria-label="أقسام الموقع"><a class="tab" href="#day-a"><b>A</b><span>السبت</span></a><a class="tab" href="#day-b"><b>B</b><span>الاثنين</span></a><a class="tab" href="#day-c"><b>C</b><span>الأربع</span></a><a class="tab" href="#log"><b><svg viewBox="0 0 24 24" aria-hidden="true"><rect x="3.5" y="5" width="17" height="15" rx="2.5" fill="none" stroke="currentColor" stroke-width="2"/><path d="M3.5 10h17M8 3v4M16 3v4" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"/></svg></b><span>السجل</span></a></nav>
 </div></header>
 
 <main class="wrap">
@@ -769,129 +704,13 @@ figcaption { position: absolute; top: 6px; right: 8px; font-size: 11px; color: #
   </div>
 </article></div>
 </section>
-<section class="view" id="food" hidden>
-  <div class="day-h"><div><p class="eyebrow">الأكل</p><h2>أكل النهارده</h2>
-    <p class="sub">اختار بديل لكل وجبة، ودوس "أكلتها" بعد ما تاكل. الأوزان بعد الطبخ.</p></div>
-    <button class="reset" type="button" id="food-reset">صفّر اليوم</button></div>
-  <div class="track" aria-live="polite"><div class="bar-row"><span class="bl">سعرات</span><span class="bt"><i id="bar-k" class="k"></i></span><span class="bv"><b id="val-k">0</b> / 2450</span></div><div class="bar-row"><span class="bl">بروتين</span><span class="bt"><i id="bar-p" class="p"></i></span><span class="bv"><b id="val-p">0</b> / 190 جم</span></div><div class="bar-row"><span class="bl">كارب</span><span class="bt"><i id="bar-c" class="c"></i></span><span class="bv"><b id="val-c">0</b> / 270 جم</span></div><div class="bar-row"><span class="bl">دهون</span><span class="bt"><i id="bar-f" class="f"></i></span><span class="bv"><b id="val-f">0</b> / 60 جم</span></div><p class="left" id="food-left"></p></div>
-  <div class="grid">
-<article class="meal" id="meal-1">
-  <header class="meal-h">
-    <span class="ex-n">1</span>
-    <div class="ex-t"><h3>الفطار</h3><p class="en">8 - 9 الصبح</p></div>
-    <button type="button" class="ate" data-meal="1" aria-pressed="false">أكلتها</button>
-  </header>
-  <div class="seg" role="group" aria-label="اختار بديل"><button type="button" class="pick" data-meal="1" data-alt="0" aria-pressed="true">بديل 1</button><button type="button" class="pick" data-meal="1" data-alt="1" aria-pressed="false">بديل 2</button><button type="button" class="pick" data-meal="1" data-alt="2" aria-pressed="false">بديل 3</button></div>
-  <div class="alt-tb" data-meal="1" data-alt="0" data-k="586" data-p="40" data-c="58" data-f="22"><div class="tbl"><table><tr><th>الصنف</th><th>سعرات</th><th class="p">بروتين</th><th class="c">كارب</th><th class="f">دهون</th></tr><tr><td class="it">بيض كامل<span>3 بيضات</span></td><td>210</td><td class="p">18</td><td class="c">1.5</td><td class="f">15</td></tr><tr><td class="it">بياض بيض<span>3 بياض</span></td><td>51</td><td class="p">11</td><td class="c">0.6</td><td class="f">0</td></tr><tr><td class="it">زيت للأومليت<span>1 معلقة صغيرة</span></td><td>45</td><td class="p">0</td><td class="c">0</td><td class="f">5</td></tr><tr><td class="it">عيش بلدي<span>1 رغيف</span></td><td>250</td><td class="p">9</td><td class="c">50</td><td class="f">1.5</td></tr><tr><td class="it">خيار وطماطم وجرجير<span>طبق</span></td><td>30</td><td class="p">1.5</td><td class="c">6</td><td class="f">0</td></tr><tr class="tot"><td class="it">المجموع</td><td>586</td><td class="p">40</td><td class="c">58</td><td class="f">22</td></tr></table></div></div><div class="alt-tb" data-meal="1" data-alt="1" data-k="570" data-p="44" data-c="77" data-f="9" hidden><div class="tbl"><table><tr><th>الصنف</th><th>سعرات</th><th class="p">بروتين</th><th class="c">كارب</th><th class="f">دهون</th></tr><tr><td class="it">شوفان<span>60 جم (ناشف)</span></td><td>233</td><td class="p">8</td><td class="c">40</td><td class="f">4</td></tr><tr><td class="it">لبن خالي الدسم<span>200 مل</span></td><td>70</td><td class="p">7</td><td class="c">10</td><td class="f">0</td></tr><tr><td class="it">بياض بيض مسلوق<span>6 بياض</span></td><td>102</td><td class="p">22</td><td class="c">1</td><td class="f">0</td></tr><tr><td class="it">بيض مسلوق<span>1 بيضة</span></td><td>70</td><td class="p">6</td><td class="c">0.5</td><td class="f">5</td></tr><tr><td class="it">تفاحة<span>1 متوسطة</span></td><td>95</td><td class="p">0.5</td><td class="c">25</td><td class="f">0</td></tr><tr class="tot"><td class="it">المجموع</td><td>570</td><td class="p">44</td><td class="c">77</td><td class="f">9</td></tr></table></div></div><div class="alt-tb" data-meal="1" data-alt="2" data-k="585" data-p="40" data-c="59" data-f="21" hidden><div class="tbl"><table><tr><th>الصنف</th><th>سعرات</th><th class="p">بروتين</th><th class="c">كارب</th><th class="f">دهون</th></tr><tr><td class="it">فول مدمس<span>6 معالق (150 جم)</span></td><td>165</td><td class="p">11</td><td class="c">28</td><td class="f">1</td></tr><tr><td class="it">زيت زيتون + ليمون<span>1 معلقة صغيرة</span></td><td>45</td><td class="p">0</td><td class="c">0</td><td class="f">5</td></tr><tr><td class="it">بيض مسلوق<span>2 بيضة</span></td><td>140</td><td class="p">12</td><td class="c">1</td><td class="f">10</td></tr><tr><td class="it">جبنة قريش<span>100 جم</span></td><td>95</td><td class="p">12</td><td class="c">3</td><td class="f">4</td></tr><tr><td class="it">عيش بلدي<span>نص رغيف</span></td><td>125</td><td class="p">4.5</td><td class="c">25</td><td class="f">1</td></tr><tr><td class="it">جرجير وخيار<span>طبق صغير</span></td><td>15</td><td class="p">1</td><td class="c">2</td><td class="f">0</td></tr><tr class="tot"><td class="it">المجموع</td><td>585</td><td class="p">40</td><td class="c">59</td><td class="f">21</td></tr></table></div></div>
-  <div class="logx ai" data-slot="1">
-    <button type="button" class="logx-open">كلت حاجة غير الخطة؟ اكتبها</button>
-    <div class="logx-body" hidden>
-      <label class="sr" for="lx-1">اكتب اللي كلته</label>
-      <textarea id="lx-1" rows="2" placeholder="مثلًا: 2 بيضة مقلية ورغيف بلدي وجبنة رومي"></textarea>
-      <div class="ask-b"><button type="button" class="ghost logx-cancel">إلغاء</button><button type="button" class="logx-go">حلّل</button></div>
-      <div class="logx-res" aria-live="polite"></div>
-    </div>
-    <div class="logx-saved"></div>
-  </div>
-</article>
-<article class="meal" id="meal-2">
-  <header class="meal-h">
-    <span class="ex-n">2</span>
-    <div class="ex-t"><h3>الغدا</h3><p class="en">2 - 3 الضهر</p></div>
-    <button type="button" class="ate" data-meal="2" aria-pressed="false">أكلتها</button>
-  </header>
-  <div class="seg" role="group" aria-label="اختار بديل"><button type="button" class="pick" data-meal="2" data-alt="0" aria-pressed="true">بديل 1</button><button type="button" class="pick" data-meal="2" data-alt="1" aria-pressed="false">بديل 2</button><button type="button" class="pick" data-meal="2" data-alt="2" aria-pressed="false">بديل 3</button></div>
-  <div class="alt-tb" data-meal="2" data-alt="0" data-k="720" data-p="69" data-c="65" data-f="18"><div class="tbl"><table><tr><th>الصنف</th><th>سعرات</th><th class="p">بروتين</th><th class="c">كارب</th><th class="f">دهون</th></tr><tr><td class="it">صدور فراخ مشوية<span>200 جم</span></td><td>330</td><td class="p">62</td><td class="c">0</td><td class="f">7</td></tr><tr><td class="it">رز أبيض<span>200 جم</span></td><td>260</td><td class="p">5</td><td class="c">57</td><td class="f">0.5</td></tr><tr><td class="it">سلطة خضرا<span>طبق كبير</span></td><td>40</td><td class="p">2</td><td class="c">8</td><td class="f">0</td></tr><tr><td class="it">زيت زيتون<span>2 معلقة صغيرة</span></td><td>90</td><td class="p">0</td><td class="c">0</td><td class="f">10</td></tr><tr class="tot"><td class="it">المجموع</td><td>720</td><td class="p">69</td><td class="c">65</td><td class="f">18</td></tr></table></div></div><div class="alt-tb" data-meal="2" data-alt="1" data-k="690" data-p="66" data-c="76" data-f="13" hidden><div class="tbl"><table><tr><th>الصنف</th><th>سعرات</th><th class="p">بروتين</th><th class="c">كارب</th><th class="f">دهون</th></tr><tr><td class="it">لحمة حمرا صافية<span>200 جم</span></td><td>340</td><td class="p">56</td><td class="c">0</td><td class="f">12</td></tr><tr><td class="it">بطاطس مسلوقة أو فرن<span>300 جم</span></td><td>260</td><td class="p">6</td><td class="c">60</td><td class="f">0.3</td></tr><tr><td class="it">سلطة خضرا<span>طبق كبير</span></td><td>40</td><td class="p">2</td><td class="c">8</td><td class="f">0</td></tr><tr><td class="it">شوربة خضار<span>طبق</span></td><td>50</td><td class="p">2</td><td class="c">8</td><td class="f">1</td></tr><tr class="tot"><td class="it">المجموع</td><td>690</td><td class="p">66</td><td class="c">76</td><td class="f">13</td></tr></table></div></div><div class="alt-tb" data-meal="2" data-alt="2" data-k="665" data-p="72" data-c="65" data-f="12" hidden><div class="tbl"><table><tr><th>الصنف</th><th>سعرات</th><th class="p">بروتين</th><th class="c">كارب</th><th class="f">دهون</th></tr><tr><td class="it">سمك بلطي أو فيليه مشوي<span>250 جم</span></td><td>320</td><td class="p">65</td><td class="c">0</td><td class="f">7</td></tr><tr><td class="it">رز أبيض أو صيادية<span>200 جم</span></td><td>260</td><td class="p">5</td><td class="c">57</td><td class="f">0.5</td></tr><tr><td class="it">سلطة بقدونس وجرجير<span>طبق كبير</span></td><td>40</td><td class="p">2</td><td class="c">8</td><td class="f">0</td></tr><tr><td class="it">زيت زيتون<span>1 معلقة صغيرة</span></td><td>45</td><td class="p">0</td><td class="c">0</td><td class="f">5</td></tr><tr class="tot"><td class="it">المجموع</td><td>665</td><td class="p">72</td><td class="c">65</td><td class="f">12</td></tr></table></div></div>
-  <div class="logx ai" data-slot="2">
-    <button type="button" class="logx-open">كلت حاجة غير الخطة؟ اكتبها</button>
-    <div class="logx-body" hidden>
-      <label class="sr" for="lx-2">اكتب اللي كلته</label>
-      <textarea id="lx-2" rows="2" placeholder="مثلًا: 2 بيضة مقلية ورغيف بلدي وجبنة رومي"></textarea>
-      <div class="ask-b"><button type="button" class="ghost logx-cancel">إلغاء</button><button type="button" class="logx-go">حلّل</button></div>
-      <div class="logx-res" aria-live="polite"></div>
-    </div>
-    <div class="logx-saved"></div>
-  </div>
-</article>
-<article class="meal" id="meal-3">
-  <header class="meal-h">
-    <span class="ex-n">3</span>
-    <div class="ex-t"><h3>وجبة التمرين</h3><p class="en">قبل الجيم بساعة أو بعده</p></div>
-    <button type="button" class="ate" data-meal="3" aria-pressed="false">أكلتها</button>
-  </header>
-  <div class="seg" role="group" aria-label="اختار بديل"><button type="button" class="pick" data-meal="3" data-alt="0" aria-pressed="true">بديل 1</button><button type="button" class="pick" data-meal="3" data-alt="1" aria-pressed="false">بديل 2</button><button type="button" class="pick" data-meal="3" data-alt="2" aria-pressed="false">بديل 3</button></div>
-  <div class="alt-tb" data-meal="3" data-alt="0" data-k="520" data-p="38" data-c="71" data-f="10"><div class="tbl"><table><tr><th>الصنف</th><th>سعرات</th><th class="p">بروتين</th><th class="c">كارب</th><th class="f">دهون</th></tr><tr><td class="it">زبادي يوناني<span>300 جم</span></td><td>220</td><td class="p">30</td><td class="c">11</td><td class="f">6</td></tr><tr><td class="it">شوفان<span>50 جم (ناشف)</span></td><td>195</td><td class="p">6.5</td><td class="c">33</td><td class="f">3.5</td></tr><tr><td class="it">موزة<span>1 متوسطة</span></td><td>105</td><td class="p">1.3</td><td class="c">27</td><td class="f">0.4</td></tr><tr class="tot"><td class="it">المجموع</td><td>520</td><td class="p">38</td><td class="c">71</td><td class="f">10</td></tr></table></div></div><div class="alt-tb" data-meal="3" data-alt="1" data-k="498" data-p="45" data-c="54" data-f="12" hidden><div class="tbl"><table><tr><th>الصنف</th><th>سعرات</th><th class="p">بروتين</th><th class="c">كارب</th><th class="f">دهون</th></tr><tr><td class="it">موزة (قبل التمرين)<span>1 متوسطة</span></td><td>105</td><td class="p">1.3</td><td class="c">27</td><td class="f">0.4</td></tr><tr><td class="it">صدور فراخ مشوية (بعده)<span>120 جم</span></td><td>198</td><td class="p">37</td><td class="c">0</td><td class="f">5</td></tr><tr><td class="it">عيش بلدي<span>نص رغيف</span></td><td>125</td><td class="p">4.5</td><td class="c">25</td><td class="f">1</td></tr><tr><td class="it">لوز<span>10 حبات</span></td><td>70</td><td class="p">2.5</td><td class="c">2.5</td><td class="f">6</td></tr><tr class="tot"><td class="it">المجموع</td><td>498</td><td class="p">45</td><td class="c">54</td><td class="f">12</td></tr></table></div></div><div class="alt-tb" data-meal="3" data-alt="2" data-k="480" data-p="34" data-c="77" data-f="5" hidden><div class="tbl"><table><tr><th>الصنف</th><th>سعرات</th><th class="p">بروتين</th><th class="c">كارب</th><th class="f">دهون</th></tr><tr><td class="it">تونة مصفاة (أيام الراحة)<span>1 علبة</span></td><td>160</td><td class="p">28</td><td class="c">0</td><td class="f">5</td></tr><tr><td class="it">بطاطا مشوية<span>250 جم</span></td><td>225</td><td class="p">5</td><td class="c">52</td><td class="f">0.3</td></tr><tr><td class="it">تفاحة أو كمثرى<span>1 متوسطة</span></td><td>95</td><td class="p">0.5</td><td class="c">25</td><td class="f">0</td></tr><tr class="tot"><td class="it">المجموع</td><td>480</td><td class="p">34</td><td class="c">77</td><td class="f">5</td></tr></table></div></div>
-  <div class="logx ai" data-slot="3">
-    <button type="button" class="logx-open">كلت حاجة غير الخطة؟ اكتبها</button>
-    <div class="logx-body" hidden>
-      <label class="sr" for="lx-3">اكتب اللي كلته</label>
-      <textarea id="lx-3" rows="2" placeholder="مثلًا: 2 بيضة مقلية ورغيف بلدي وجبنة رومي"></textarea>
-      <div class="ask-b"><button type="button" class="ghost logx-cancel">إلغاء</button><button type="button" class="logx-go">حلّل</button></div>
-      <div class="logx-res" aria-live="polite"></div>
-    </div>
-    <div class="logx-saved"></div>
-  </div>
-</article>
-<article class="meal" id="meal-4">
-  <header class="meal-h">
-    <span class="ex-n">4</span>
-    <div class="ex-t"><h3>العشا</h3><p class="en">قبل النوم بساعتين</p></div>
-    <button type="button" class="ate" data-meal="4" aria-pressed="false">أكلتها</button>
-  </header>
-  <div class="seg" role="group" aria-label="اختار بديل"><button type="button" class="pick" data-meal="4" data-alt="0" aria-pressed="true">بديل 1</button><button type="button" class="pick" data-meal="4" data-alt="1" aria-pressed="false">بديل 2</button><button type="button" class="pick" data-meal="4" data-alt="2" aria-pressed="false">بديل 3</button></div>
-  <div class="alt-tb" data-meal="4" data-alt="0" data-k="590" data-p="46" data-c="76" data-f="12"><div class="tbl"><table><tr><th>الصنف</th><th>سعرات</th><th class="p">بروتين</th><th class="c">كارب</th><th class="f">دهون</th></tr><tr><td class="it">تونة مصفاة<span>1 علبة</span></td><td>160</td><td class="p">28</td><td class="c">0</td><td class="f">5</td></tr><tr><td class="it">بيض مسلوق<span>1 بيضة</span></td><td>70</td><td class="p">6</td><td class="c">0.5</td><td class="f">5</td></tr><tr><td class="it">عيش بلدي<span>1 رغيف</span></td><td>250</td><td class="p">9</td><td class="c">50</td><td class="f">1.5</td></tr><tr><td class="it">خضار<span>طبق</span></td><td>30</td><td class="p">1.5</td><td class="c">6</td><td class="f">0</td></tr><tr><td class="it">تفاحة أو برتقانة<span>1 متوسطة</span></td><td>80</td><td class="p">1</td><td class="c">20</td><td class="f">0</td></tr><tr class="tot"><td class="it">المجموع</td><td>590</td><td class="p">46</td><td class="c">76</td><td class="f">12</td></tr></table></div></div><div class="alt-tb" data-meal="4" data-alt="1" data-k="645" data-p="64" data-c="56" data-f="17" hidden><div class="tbl"><table><tr><th>الصنف</th><th>سعرات</th><th class="p">بروتين</th><th class="c">كارب</th><th class="f">دهون</th></tr><tr><td class="it">صدور فراخ مشوية<span>150 جم</span></td><td>250</td><td class="p">47</td><td class="c">0</td><td class="f">5.4</td></tr><tr><td class="it">سلطة سيزر (خس وخيار وطماطم)<span>طبق كبير</span></td><td>40</td><td class="p">2</td><td class="c">8</td><td class="f">0</td></tr><tr><td class="it">زيت زيتون + ليمون<span>1 معلقة صغيرة</span></td><td>45</td><td class="p">0</td><td class="c">0</td><td class="f">5</td></tr><tr><td class="it">بيض مسلوق<span>1 بيضة</span></td><td>70</td><td class="p">6</td><td class="c">0.5</td><td class="f">5</td></tr><tr><td class="it">توست أسمر<span>2 شريحة</span></td><td>160</td><td class="p">8</td><td class="c">28</td><td class="f">2</td></tr><tr><td class="it">فاكهة<span>1 متوسطة</span></td><td>80</td><td class="p">1</td><td class="c">20</td><td class="f">0</td></tr><tr class="tot"><td class="it">المجموع</td><td>645</td><td class="p">64</td><td class="c">56</td><td class="f">17</td></tr></table></div></div><div class="alt-tb" data-meal="4" data-alt="2" data-k="630" data-p="45" data-c="68" data-f="20" hidden><div class="tbl"><table><tr><th>الصنف</th><th>سعرات</th><th class="p">بروتين</th><th class="c">كارب</th><th class="f">دهون</th></tr><tr><td class="it">جبنة قريش بزعتر<span>200 جم</span></td><td>190</td><td class="p">24</td><td class="c">7</td><td class="f">8</td></tr><tr><td class="it">زيت زيتون<span>1 معلقة صغيرة</span></td><td>45</td><td class="p">0</td><td class="c">0</td><td class="f">5</td></tr><tr><td class="it">بيض مسلوق<span>1 بيضة</span></td><td>70</td><td class="p">6</td><td class="c">0.5</td><td class="f">5</td></tr><tr><td class="it">عيش بلدي<span>1 رغيف</span></td><td>250</td><td class="p">9</td><td class="c">50</td><td class="f">1.5</td></tr><tr><td class="it">زبادي لايت<span>1 علبة</span></td><td>55</td><td class="p">5</td><td class="c">7</td><td class="f">0.5</td></tr><tr><td class="it">خيار وخس<span>طبق صغير</span></td><td>20</td><td class="p">1</td><td class="c">4</td><td class="f">0</td></tr><tr class="tot"><td class="it">المجموع</td><td>630</td><td class="p">45</td><td class="c">68</td><td class="f">20</td></tr></table></div></div>
-  <div class="logx ai" data-slot="4">
-    <button type="button" class="logx-open">كلت حاجة غير الخطة؟ اكتبها</button>
-    <div class="logx-body" hidden>
-      <label class="sr" for="lx-4">اكتب اللي كلته</label>
-      <textarea id="lx-4" rows="2" placeholder="مثلًا: 2 بيضة مقلية ورغيف بلدي وجبنة رومي"></textarea>
-      <div class="ask-b"><button type="button" class="ghost logx-cancel">إلغاء</button><button type="button" class="logx-go">حلّل</button></div>
-      <div class="logx-res" aria-live="polite"></div>
-    </div>
-    <div class="logx-saved"></div>
-  </div>
-</article></div>
-
-  <h2 class="h2s">سناكس <small>صنف واحد في اليوم، بدل حاجة مش زيادة</small></h2>
-  <ul class="snacks"><li class="snack" data-i="0" data-k="250" data-p="20" data-c="29" data-f="6"><div class="sn-t"><b>بروتين بار بالانس</b><span>1 بار 70 جم · 250 سعر · 20 جم بروتين</span></div><div class="sn-c"><button type="button" class="sn-btn" data-d="-1" aria-label="شيل واحد">−</button><span class="sn-n" id="sn-0">0</span><button type="button" class="sn-btn" data-d="1" aria-label="زوّد واحد">+</button></div></li><li class="snack" data-i="1" data-k="280" data-p="16" data-c="38" data-f="9"><div class="sn-t"><b>رقائق البروتين</b><span>كيس 70 جم · 280 سعر · 16 جم بروتين</span></div><div class="sn-c"><button type="button" class="sn-btn" data-d="-1" aria-label="شيل واحد">−</button><span class="sn-n" id="sn-1">0</span><button type="button" class="sn-btn" data-d="1" aria-label="زوّد واحد">+</button></div></li><li class="snack" data-i="2" data-k="200" data-p="8" data-c="22" data-f="5"><div class="sn-t"><b>ريال حمص سناكس</b><span>كيس 50 جم · 200 سعر · 8 جم بروتين</span></div><div class="sn-c"><button type="button" class="sn-btn" data-d="-1" aria-label="شيل واحد">−</button><span class="sn-n" id="sn-2">0</span><button type="button" class="sn-btn" data-d="1" aria-label="زوّد واحد">+</button></div></li></ul>
-
-  <div class="ai"><h2 class="h2s">حاجة زيادة برا الوجبات <small>شاي بسكر، حتة حلويات، عزومة...</small></h2>
-  <div class="meal extra"><div class="logx ai" data-slot="x">
-    <button type="button" class="logx-open">سجّل حاجة كلتها</button>
-    <div class="logx-body" hidden>
-      <label class="sr" for="lx-x">اكتب اللي كلته</label>
-      <textarea id="lx-x" rows="2" placeholder="مثلًا: كوباية شاي بمعلقتين سكر وباكو بسكويت"></textarea>
-      <div class="ask-b"><button type="button" class="ghost logx-cancel">إلغاء</button><button type="button" class="logx-go">حلّل</button></div>
-      <div class="logx-res" aria-live="polite"></div>
-    </div>
-    <div class="logx-saved"></div>
-  </div></div></div>
-
-  <h2 class="h2s">جدول البدائل <small>بدّل أي صنف بصنف من نفس المجموعة</small></h2>
-  <label class="search" for="swap-q"><span>دوّر</span><input id="swap-q" type="search" placeholder="فراخ، رز، لوز..." autocomplete="off"></label>
-  <div class="tbl swaps"><table><tr><th>المجموعة</th><th>الصنف</th><th>سعرات</th><th class="p">بروتين</th><th class="c">كارب</th><th class="f">دهون</th></tr><tr data-q="صدور فراخ مشوية 100 جم"><td class="grp">بروتين</td><td class="it">صدور فراخ مشوية<span>100 جم</span></td><td>165</td><td class="p">31</td><td class="c">0</td><td class="f">4</td></tr><tr data-q="سمك بلطي مشوي 120 جم"><td class="grp">بروتين</td><td class="it">سمك بلطي مشوي<span>120 جم</span></td><td>155</td><td class="p">31</td><td class="c">0</td><td class="f">3</td></tr><tr data-q="لحمة حمرا صافية 100 جم"><td class="grp">بروتين</td><td class="it">لحمة حمرا صافية<span>100 جم</span></td><td>170</td><td class="p">28</td><td class="c">0</td><td class="f">6</td></tr><tr data-q="تونة مصفاة 1 علبة"><td class="grp">بروتين</td><td class="it">تونة مصفاة<span>1 علبة</span></td><td>160</td><td class="p">28</td><td class="c">0</td><td class="f">5</td></tr><tr data-q="5 بياض + 1 بيضة "><td class="grp">بروتين</td><td class="it">5 بياض + 1 بيضة<span></span></td><td>155</td><td class="p">24</td><td class="c">1.5</td><td class="f">5</td></tr><tr data-q="جبنة قريش 200 جم"><td class="grp">بروتين</td><td class="it">جبنة قريش<span>200 جم</span></td><td>190</td><td class="p">24</td><td class="c">7</td><td class="f">8</td></tr><tr data-q="زبادي يوناني 250 جم"><td class="grp">بروتين</td><td class="it">زبادي يوناني<span>250 جم</span></td><td>180</td><td class="p">25</td><td class="c">9</td><td class="f">5</td></tr><tr data-q="واي بروتين (لما تجيبه) 1 سكوب"><td class="grp">بروتين</td><td class="it">واي بروتين (لما تجيبه)<span>1 سكوب</span></td><td>120</td><td class="p">24</td><td class="c">3</td><td class="f">1.5</td></tr><tr data-q="بسطرمة 40 جم ≈ 4 شرايح · نص بديل"><td class="grp">بروتين</td><td class="it">بسطرمة<span>40 جم ≈ 4 شرايح · نص بديل</span></td><td>100</td><td class="p">12</td><td class="c">1</td><td class="f">5.5</td></tr><tr data-q="رز أبيض مطبوخ 150 جم"><td class="grp">كربوهيدرات</td><td class="it">رز أبيض مطبوخ<span>150 جم</span></td><td>195</td><td class="p">4</td><td class="c">43</td><td class="f">0.4</td></tr><tr data-q="عيش بلدي رغيف صغير 90 جم"><td class="grp">كربوهيدرات</td><td class="it">عيش بلدي<span>رغيف صغير 90 جم</span></td><td>225</td><td class="p">8</td><td class="c">45</td><td class="f">1.3</td></tr><tr data-q="مكرونة مطبوخة 150 جم"><td class="grp">كربوهيدرات</td><td class="it">مكرونة مطبوخة<span>150 جم</span></td><td>235</td><td class="p">8</td><td class="c">46</td><td class="f">1.4</td></tr><tr data-q="بطاطس مسلوقة 200 جم"><td class="grp">كربوهيدرات</td><td class="it">بطاطس مسلوقة<span>200 جم</span></td><td>175</td><td class="p">4</td><td class="c">40</td><td class="f">0</td></tr><tr data-q="بطاطا مشوية 200 جم"><td class="grp">كربوهيدرات</td><td class="it">بطاطا مشوية<span>200 جم</span></td><td>180</td><td class="p">4</td><td class="c">42</td><td class="f">0</td></tr><tr data-q="شوفان 60 جم ناشف"><td class="grp">كربوهيدرات</td><td class="it">شوفان<span>60 جم ناشف</span></td><td>235</td><td class="p">8</td><td class="c">40</td><td class="f">4</td></tr><tr data-q="فول مدمس 200 جم"><td class="grp">كربوهيدرات</td><td class="it">فول مدمس<span>200 جم</span></td><td>220</td><td class="p">15</td><td class="c">37</td><td class="f">1</td></tr><tr data-q="فاكهة متوسطة 2 حبة"><td class="grp">كربوهيدرات</td><td class="it">فاكهة متوسطة<span>2 حبة</span></td><td>170</td><td class="p">1.5</td><td class="c">43</td><td class="f">0.5</td></tr><tr data-q="زيت زيتون 1 معلقة كبيرة"><td class="grp">دهون</td><td class="it">زيت زيتون<span>1 معلقة كبيرة</span></td><td>90</td><td class="p">0</td><td class="c">0</td><td class="f">10</td></tr><tr data-q="طحينة 1 معلقة كبيرة"><td class="grp">دهون</td><td class="it">طحينة<span>1 معلقة كبيرة</span></td><td>90</td><td class="p">2.5</td><td class="c">3</td><td class="f">8</td></tr><tr data-q="أفوكادو ربع حبة"><td class="grp">دهون</td><td class="it">أفوكادو<span>ربع حبة</span></td><td>80</td><td class="p">1</td><td class="c">4</td><td class="f">7.5</td></tr><tr data-q="زبدة فول سوداني 2 معلقة صغيرة"><td class="grp">دهون</td><td class="it">زبدة فول سوداني<span>2 معلقة صغيرة</span></td><td>95</td><td class="p">4</td><td class="c">3</td><td class="f">8</td></tr><tr data-q="لوز 15 جم ≈ 10 حبات"><td class="grp">دهون</td><td class="it">لوز<span>15 جم ≈ 10 حبات</span></td><td>87</td><td class="p">3</td><td class="c">3</td><td class="f">7.5</td></tr><tr data-q="عين جمل 15 جم ≈ 4 أنصاص"><td class="grp">دهون</td><td class="it">عين جمل<span>15 جم ≈ 4 أنصاص</span></td><td>98</td><td class="p">2.3</td><td class="c">2</td><td class="f">10</td></tr><tr data-q="كاجو 15 جم ≈ 8 حبات"><td class="grp">دهون</td><td class="it">كاجو<span>15 جم ≈ 8 حبات</span></td><td>83</td><td class="p">2.7</td><td class="c">4.5</td><td class="f">6.6</td></tr><tr data-q="فول سوداني غير مملح 15 جم"><td class="grp">دهون</td><td class="it">فول سوداني غير مملح<span>15 جم</span></td><td>85</td><td class="p">4</td><td class="c">2.4</td><td class="f">7.4</td></tr><tr data-q="بندق 15 جم ≈ 10 حبات"><td class="grp">دهون</td><td class="it">بندق<span>15 جم ≈ 10 حبات</span></td><td>94</td><td class="p">2</td><td class="c">2.5</td><td class="f">9</td></tr><tr data-q="فستق 15 جم ≈ 20 حبة"><td class="grp">دهون</td><td class="it">فستق<span>15 جم ≈ 20 حبة</span></td><td>84</td><td class="p">3</td><td class="c">4</td><td class="f">7</td></tr><tr data-q="لب أبيض مقشر 15 جم"><td class="grp">دهون</td><td class="it">لب أبيض مقشر<span>15 جم</span></td><td>84</td><td class="p">4.5</td><td class="c">1.6</td><td class="f">7.4</td></tr></table></div>
-  <p class="none" id="swap-none" hidden>مفيش صنف بالاسم ده. اسأل الكوتش عن بديل.</p>
-
-  <div class="rules">
-    <h3>قواعد سريعة</h3>
-    <ul>
-      <li>خضار وسلطة من غير حد</li>
-      <li>المية 4 - 4.5 لتر في اليوم</li>
-      <li>مشوي أو مسلوق أو فرن أو إير فراير، ومفيش مقلي</li>
-      <li>الزيت بيتقاس بالمعلقة</li>
-      <li>المكسرات من غير ملح، و30 جم في اليوم بالكتير</li>
-      <li>البسطرمة 2-3 مرات في الأسبوع، ومتاكلهاش قبل الـ InBody بيومين</li>
-      <li>وجبة حرة واحدة في الأسبوع</li>
-    </ul>
-  </div>
-</section>
 <section class="view" id="log" hidden>
   <div class="day-h"><div><p class="eyebrow">السجل</p><h2 id="lg-title">الشهر</h2>
-    <p class="sub">كل تمرين وأكل بتسجله بيتحفظ هنا يوم بيوم.</p></div>
+    <p class="sub">كل مجموعة بتعلّم عليها بتتحفظ هنا يوم بيوم، ومعاها وزنك.</p></div>
     <div class="mnav"><button type="button" class="ghost" id="lg-prev" aria-label="الشهر اللي فات">‹ اللي فات</button><button type="button" class="ghost" id="lg-next" aria-label="الشهر الجاي">الجاي ›</button></div></div>
   <div class="tiles" id="lg-tiles"></div>
   <div class="cal" id="lg-cal" role="grid" aria-label="أيام الشهر"></div>
-  <p class="legend"><span class="lg-dot good"></span> أكل في الهدف <span class="lg-dot over"></span> زيادة <span class="lg-dot under"></span> أقل من الهدف <span class="badge-s">A</span> يوم تمرين</p>
+  <p class="legend"><span class="badge-s">A</span> يوم تمرين (حرف اليوم اللي لعبته) <span class="lg-dot good"></span> وزن متسجل</p>
   <div class="dayd" id="lg-day"></div>
   <div class="rules settings app-only">
     <h3>الإعدادات</h3>
@@ -905,15 +724,7 @@ figcaption { position: absolute; top: 6px; right: 8px; font-size: 11px; color: #
       <input id="gh-repo" type="text" dir="ltr" autocomplete="off">
       <div class="ask-b"><button type="button" id="gh-save">احفظ وزامن دلوقتي</button></div>
     </div>
-    <div class="set-block">
-      <h4>الذكاء الاصطناعي (Gemini)</h4>
-      <p class="sub">بيشغّل الكوتش وتحليل الأكل لما يكون فيه نت. اعمل مفتاح مجاني من aistudio.google.com/apikey.</p>
-      <label for="gem-key">مفتاح Gemini <span class="sub" id="gem-state"></span></label>
-      <input id="gem-key" type="password" autocomplete="off" placeholder="AIza...">
-      <div class="ask-b"><button type="button" id="gem-save">احفظ وجرّب</button></div>
-      <p class="sub" id="gem-msg" aria-live="polite"></p>
-    </div>
-    <p class="sub">المفاتيح بتتحفظ على الموبايل ده بس، ومش بتتبعت غير لـ GitHub وGoogle. <button type="button" class="linkbtn" id="keys-clear">امسح المفاتيح</button></p>
+    <p class="sub">المفتاح بيتحفظ على الموبايل ده بس، ومش بيتبعت غير لـ GitHub. <button type="button" class="linkbtn" id="keys-clear">امسح المفتاح</button></p>
   </div>
   <div class="rules backup">
     <h3>نسخة احتياطية</h3>
@@ -923,25 +734,7 @@ figcaption { position: absolute; top: 6px; right: 8px; font-size: 11px; color: #
     <p class="none" id="lg-msg" aria-live="polite"></p>
   </div>
 </section>
-<section class="view" id="coach" hidden>
-  <div class="day-h"><div><p class="eyebrow">الكوتش</p><h2>اسأل عن التمرين والأكل</h2>
-    <p class="sub">الكوتش عارف خطتك وأكلك النهارده. اسأله عن بديل أكل، تمرين مش فاهمه، جهاز مشغول، أو وجع.</p></div>
-    <button class="reset" type="button" id="chat-clear">محادثة جديدة</button></div>
-  <div class="chips-q" id="chips-q"><button type="button" class="q">فاضلي كام بروتين النهارده؟ أكمّل بإيه؟</button><button type="button" class="q">أنا بره البيت ومش معايا أكلي، آكل إيه؟</button><button type="button" class="q">جعان بالليل بعد العشا، أعمل إيه؟</button><button type="button" class="q">الجهاز مشغول وماليش نفس أستنى، أعمل إيه؟</button><button type="button" class="q">مش قادر أروح الجيم النهارده</button><button type="button" class="q">حاسس بوجع خفيف في ركبتي في السكوات</button></div>
-  <div class="chat" id="chat" aria-live="polite"></div>
-  <p class="none" id="coach-off" hidden></p>
-  <form class="ask" id="ask">
-    <label class="sr" for="ask-in">سؤالك</label>
-    <textarea id="ask-in" rows="2" placeholder="اكتب سؤالك هنا..."></textarea>
-    <div class="ask-b">
-      <button type="button" id="mic" class="ghost" hidden aria-pressed="false">اتكلم</button>
-      <button type="button" id="stop" class="ghost" hidden>إيقاف</button>
-      <button type="submit" id="send">ابعت</button>
-    </div>
-  </form>
-  <p class="foot">الكوتش بيستخدم حسابك على Claude. نصايحه عامة ومش بديل عن الدكتور.</p>
-</section>
-<p class="foot">الصور التشريحية والرسوم المتحركة معمولة للخطة دي. زرار MuscleWiki بيفتح صفحة التمرين على موقعهم في تاب جديدة. علامات المجموعات والأكل بتتحفظ على الجهاز ده بس.</p>
+<p class="foot">الصور التشريحية والرسوم المتحركة معمولة للخطة دي. زرار MuscleWiki بيفتح صفحة التمرين على موقعهم في تاب جديدة. علامات المجموعات والوزن بتتحفظ في السجل.</p>
 </main>
 
 <div class="timer" id="timer" hidden><div class="in">
@@ -957,129 +750,6 @@ figcaption { position: absolute; top: 6px; right: 8px; font-size: 11px; color: #
   };
   const today = new Date().toLocaleDateString("en-CA");
   const APP = !!window.GYM_APP; // the phone app (GitHub Pages) vs. the Claude artifact
-
-  // ----- AI: Claude inside the artifact viewer; Gemini with the viewer's own key in the phone app
-  let claudeSample = null;
-  const GEM = "https://generativelanguage.googleapis.com/v1beta/";
-  async function gemErr(r) { // keep Google's own message so a failing key can be diagnosed on screen
-    let detail = ""; try { const j = await r.json(); detail = (j.error && j.error.message) || "" } catch (e) {}
-    return { code: r.status === 429 ? "rate_limited" : [400, 401, 403].includes(r.status) ? "bad_key" : "upstream_error", status: r.status, detail };
-  }
-  // Two Google endpoints accept API keys: the Gemini API (AI Studio) and Vertex AI (express mode).
-  // Key formats overlap, so try both and remember which one answered.
-  const VTX = "https://aiplatform.googleapis.com/v1/publishers/google/models/";
-  const FLASH = ["gemini-2.5-flash", "gemini-3-flash", "gemini-3.0-flash", "gemini-flash-latest", "gemini-2.0-flash"];
-  // Gemini API: key in the x-goog-api-key header (what AI Studio's own curl sample does; needed for "AQ." auth keys)
-  const gemUrl = (key, m) => m.kind === "vx" ? VTX + m.model + ":generateContent?key=" + encodeURIComponent(key) : GEM + m.model + ":generateContent";
-  const gemHeaders = (key, m) => Object.assign({ "Content-Type": "application/json" }, m.kind === "vx" ? {} : { "x-goog-api-key": key });
-  const probeBody = JSON.stringify({ contents: [{ role: "user", parts: [{ text: "hi" }] }], generationConfig: { maxOutputTokens: 8 } });
-  async function gemModel(key) {
-    const cached = store.get("gemModel"); if (cached && cached.kind) return cached;
-    let firstErr = null;
-    // 1) Gemini API: list the models this key can use and take the newest stable Flash
-    const r = await fetch(GEM + "models?pageSize=200", { headers: { "x-goog-api-key": key } });
-    if (r.ok) {
-      const names = ((await r.json()).models || []).filter(m => (m.supportedGenerationMethods || []).includes("generateContent")).map(m => m.name);
-      const ver = n => parseFloat((n.match(/gemini-([\d.]+)/) || [0, 0])[1]);
-      // most dependable first: the "latest Flash" alias, then 2.5 Flash, then other stable Flash versions, newest first
-      const order = ["models/gemini-flash-latest", "models/gemini-2.5-flash"].filter(n => names.includes(n))
-        .concat(names.filter(n => /^models\/gemini-[\d.]+-flash$/.test(n) && n !== "models/gemini-2.5-flash").sort((a, b) => ver(b) - ver(a)))
-        .concat(names.filter(n => /gemini.*flash/.test(n) && !/image|tts|audio|live|thinking|lite/.test(n)));
-      const cands = [...new Set(order)].slice(0, 5);
-      if (cands.length) { const m = { kind: "gl", model: cands[0], cands }; store.set("gemModel", m); return m }
-    } else firstErr = await gemErr(r);
-    // 2) Vertex AI express: no model list, so probe the usual Flash names with a tiny request
-    for (const name of FLASH) {
-      const m = { kind: "vx", model: name };
-      const v = await fetch(gemUrl(key, m), { method: "POST", headers: gemHeaders(key, m), body: probeBody });
-      if (v.ok) { store.set("gemModel", m); return m }
-      if (v.status !== 404) { const e = await gemErr(v); throw (firstErr && firstErr.code !== "bad_key") ? firstErr : Object.assign(e, { detail: [firstErr && firstErr.detail, e.detail].filter(Boolean).join(" | ") }) }
-    }
-    throw firstErr || { code: "upstream_error" };
-  }
-  const streamUrl = (key, m) => m.kind === "vx" ? VTX + m.model + ":streamGenerateContent?alt=sse&key=" + encodeURIComponent(key) : GEM + m.model + ":streamGenerateContent?alt=sse";
-  const partsText = d => { const c = (d.candidates || [])[0]; return ((c && c.content && c.content.parts) || []).filter(p => !p.thought).map(p => p.text || "").join("") };
-  const netErr = e => e && e.code ? e : { code: e && e.name === "AbortError" ? "cancelled" : "upstream_error", detail: String(e && e.message || "") };
-  async function readOne(r) {
-    const d = await r.json(), t = partsText(d);
-    if (!t) throw { code: d.promptFeedback && d.promptFeedback.blockReason ? "refused" : "empty_completion" };
-    return t;
-  }
-  async function readStream(r, onText) { // server-sent events: one JSON chunk per "data:" line
-    const reader = r.body.getReader(), dec = new TextDecoder(); let buf = "", text = "";
-    try {
-      for (;;) {
-        const { done, value } = await reader.read(); if (done) break;
-        buf += dec.decode(value, { stream: true });
-        let i;
-        while ((i = buf.indexOf("\n")) >= 0) {
-          const line = buf.slice(0, i).trim(); buf = buf.slice(i + 1);
-          if (!line.startsWith("data:")) continue;
-          try { const t = partsText(JSON.parse(line.slice(5))); if (t) { text += t; onText({ text }) } } catch (e) {}
-        }
-      }
-    } catch (e) { throw Object.assign(netErr(e), text ? { text } : {}) }
-    if (!text) throw { code: "empty_completion" };
-    return text;
-  }
-  // Fast by default: thinking off (thinkingBudget 0). A model that refuses that gets one retry with thinking on,
-  // and the choice is remembered. A missing or busy model falls through to the next candidate.
-  async function gemCall(contents, json, signal, onText) {
-    const key = store.get("geminiKey");
-    let model, lastErr = null;
-    try { model = await gemModel(key) } catch (e) { throw netErr(e) }
-    const tries = model.cands ? [model.model, ...model.cands.filter(n => n !== model.model)] : [model.model];
-    for (const name of tries.slice(0, 4)) {
-      const m = Object.assign({}, model, { model: name });
-      for (const think of (name === model.model && model.think ? [true] : [false, true])) {
-        const gc = Object.assign(json ? { responseMimeType: "application/json" } : {}, think ? {} : { thinkingConfig: { thinkingBudget: 0 } });
-        let r;
-        try { r = await fetch(onText ? streamUrl(key, m) : gemUrl(key, m), { method: "POST", signal, headers: gemHeaders(key, m), body: JSON.stringify({ contents, generationConfig: gc }) }) }
-        catch (e) { throw netErr(e) }
-        if (r.ok) {
-          if (name !== model.model || think !== !!model.think) store.set("gemModel", Object.assign(m, { think }));
-          return onText ? readStream(r, onText) : readOne(r);
-        }
-        lastErr = await gemErr(r);
-        if (!(r.status === 400 && !think)) break;
-      }
-      if (![404, 500, 503].includes(lastErr.status)) break;
-    }
-    if (lastErr && lastErr.status === 404) store.set("gemModel", null);
-    throw lastErr || { code: "upstream_error" };
-  }
-  const AI = {
-    why() { // "" when AI can be used right now, else the reason
-      if (!APP) return claudeSample ? "" : "noclaude";
-      if (!navigator.onLine) return "offline";
-      return store.get("geminiKey") ? "" : "nokey";
-    },
-    async chat(turns, { onText, signal }) {
-      if (!APP) return (await claudeSample(turns, { cache: false, signal, onText })).text;
-      const contents = [];
-      turns.forEach(t => { const role = t.role === "user" ? "user" : "model", last = contents[contents.length - 1];
-        if (last && last.role === role) last.parts[0].text += "\n\n" + t.content; else contents.push({ role, parts: [{ text: t.content }] }) });
-      return gemCall(contents, false, signal, onText); // streamed: onText fires as the reply is written
-    },
-    async json(prompt) {
-      if (!APP) return claudeSample.json(prompt);
-      const t = await gemCall([{ role: "user", parts: [{ text: prompt }] }], true);
-      try { return JSON.parse(t.replace(/^```(?:json)?\s*|\s*```$/g, "")) } catch (e) { throw { code: "invalid_json" } }
-    }
-  };
-  const errDetail = e => (e && (e.status || e.detail)) ? " (" + [e.status ? "كود " + e.status : "", (e.detail || "").slice(0, 200)].filter(Boolean).join(": ") + ")" : "";
-  const AI_MSG = {
-    offline: "الكوتش وتحليل الأكل محتاجين نت. هيرجعوا لوحدهم أول ما النت يرجع، وباقي التطبيق شغال عادي.",
-    nokey: "عشان تشغّل الكوتش وتحليل الأكل، حط مفتاح Gemini من صفحة السجل في كارت الإعدادات.",
-    noclaude: "الكوتش بيشتغل لما تفتح الصفحة من حسابك على Claude. باقي الموقع شغال عادي."
-  };
-  function aiRefresh() {
-    const w = AI.why(), off = document.getElementById("coach-off");
-    document.body.classList.toggle("no-ai", !!w);
-    if (off) { off.hidden = !w; off.textContent = AI_MSG[w] || ""; document.getElementById("ask").hidden = !!w; document.getElementById("chips-q").hidden = !!w }
-  }
-  addEventListener("online", () => { aiRefresh(); syncAll(false) });
-  addEventListener("offline", aiRefresh);
 
   // ----- online sync (phone app): one JSON file per month in the viewer's private GitHub repo
   const b64e = s => { const b = new TextEncoder().encode(s); let x = ""; for (let i = 0; i < b.length; i += 0x8000) x += String.fromCharCode.apply(null, b.subarray(i, i + 0x8000)); return btoa(x) };
@@ -1123,7 +793,6 @@ figcaption { position: absolute; top: 6px; right: 8px; font-size: 11px; color: #
       }
       for (const m of months) { await syncMonth(m); dirty.delete(m) }
       store.set("dirty", [...dirty]); store.set("hist", hist);
-      if (full || !store.get("profile")) { const r = await gh("profile.md"); if (r.ok) store.set("profile", b64d((await r.json()).content)) }
       store.set("lastSync", Date.now()); syncStatus("متزامن ✓ " + lastSyncText());
       if (JSON.stringify(hist[today] || {}) !== before) reloadToday();
       if (!document.getElementById("log").hidden) renderLog();
@@ -1132,25 +801,24 @@ figcaption { position: absolute; top: 6px; right: 8px; font-size: 11px; color: #
     } finally { syncing = false }
   }
   addEventListener("visibilitychange", () => { if (document.visibilityState === "visible") syncAll(false) });
+  addEventListener("online", () => syncAll(false));
   // ----- history: one record per date, kept forever on this device
   let hist = store.get("hist") || {};
   const day = () => hist[today] || (hist[today] = {});
   (function migrate() {
-    const s = store.get("sets"), f = store.get("food");
+    const s = store.get("sets");
     if (s && s.date && s.on && !(hist[s.date] || {}).sets) (hist[s.date] = hist[s.date] || {}).sets = s.on;
-    if (f && f.date && !(hist[f.date] || {}).food) (hist[f.date] = hist[f.date] || {}).food = { ate: f.ate || {}, snacks: f.snacks || {}, custom: f.custom || {}, extra: f.extra || [] };
-    if (f && f.pick && !store.get("pick")) store.set("pick", f.pick);
   })();
   let done = { on: day().sets || {} };
   function save() {
-    const d = day(), { s } = eaten();
+    const d = day();
     d.sets = done.on;
-    d.food = { ate: food.ate, snacks: food.snacks, custom: food.custom, extra: food.extra, pick: Object.assign({}, food.pick) };
-    d.sum = { k: Math.round(s.k), p: Math.round(s.p), c: Math.round(s.c), f: Math.round(s.f), sets: Object.keys(done.on).filter(k => done.on[k]).length };
+    d.sum = Object.assign(d.sum || {}, { sets: Object.keys(done.on).filter(k => done.on[k]).length });
     d.ts = Date.now();
-    store.set("hist", hist); store.set("pick", food.pick); markDirty(today);
+    store.set("hist", hist); markDirty(today);
     if (!document.getElementById("log").hidden) renderLog();
   }
+  function reloadToday() { done.on = day().sets || {}; refresh() } // today's record changed on another device
 
   // ----- day routing (#day-a / #day-b / #day-c), default: today's or the next workout day
   function defaultDay() {
@@ -1228,169 +896,36 @@ figcaption { position: absolute; top: 6px; right: 8px; font-size: 11px; color: #
     s._f[s._i].classList.add("on");
   }), 70);
 
-  // ----- food: pick an option per meal, tick what was eaten, add snacks
-  const T_ = { k: 2450, p: 190, c: 270, f: 60 };
-  const fd = day().food || {};
-  let food = { ate: fd.ate || {}, snacks: fd.snacks || {}, custom: fd.custom || {}, extra: fd.extra || [], pick: store.get("pick") || {} };
-  function reloadToday() { // today's record changed on another device
-    const d = day(), f = d.food || {};
-    done.on = d.sets || {}; food.ate = f.ate || {}; food.snacks = f.snacks || {}; food.custom = f.custom || {}; food.extra = f.extra || [];
-    refresh(); renderFood();
-  }
-  function eaten() {
-    const s = { k: 0, p: 0, c: 0, f: 0 }, list = [];
-    document.querySelectorAll(".meal[id^='meal-']").forEach(m => {
-      const no = m.querySelector(".ate").dataset.meal, cu = food.custom[no];
-      if (cu) { for (const k in s) s[k] += cu.tot[k]; list.push(m.querySelector("h3").textContent + ": " + cu.text); return }
-      if (!food.ate[no]) return;
-      const tb = m.querySelector('.alt-tb[data-alt="' + (food.pick[no] || 0) + '"]');
-      for (const k in s) s[k] += +tb.dataset[k];
-      list.push(m.querySelector("h3").textContent + " (بديل " + ((food.pick[no] || 0) + 1) + ")");
-    });
-    food.extra.forEach(x => { for (const k in s) s[k] += x.tot[k]; list.push("زيادة: " + x.text) });
-    document.querySelectorAll(".snack").forEach(li => {
-      const n = food.snacks[li.dataset.i] || 0;
-      for (const k in s) s[k] += n * +li.dataset[k];
-      if (n) list.push(n + " × " + li.querySelector("b").textContent);
-    });
-    return { s, list };
-  }
-  function renderFood() {
-    document.querySelectorAll(".pick").forEach(b => b.setAttribute("aria-pressed", String((food.pick[b.dataset.meal] || 0) === +b.dataset.alt)));
-    document.querySelectorAll(".alt-tb").forEach(t => t.hidden = (food.pick[t.dataset.meal] || 0) !== +t.dataset.alt);
-    document.querySelectorAll(".ate").forEach(b => {
-      const cu = !!food.custom[b.dataset.meal], on = cu || !!food.ate[b.dataset.meal], m = b.closest(".meal");
-      b.setAttribute("aria-pressed", String(on)); b.textContent = cu ? "متسجلة ✓" : on ? "أكلتها ✓" : "أكلتها"; b.disabled = cu;
-      m.classList.toggle("complete", on); m.classList.toggle("custom", cu);
-    });
-    document.querySelectorAll(".logx").forEach(renderSaved);
-    document.querySelectorAll(".snack").forEach(li => document.getElementById("sn-" + li.dataset.i).textContent = food.snacks[li.dataset.i] || 0);
-    const { s } = eaten();
-    for (const k in s) {
-      document.getElementById("val-" + k).textContent = Math.round(s[k]);
-      const bar = document.getElementById("bar-" + k); bar.style.width = Math.min(100, s[k] / T_[k] * 100) + "%"; bar.classList.toggle("over", s[k] > T_[k] * 1.05);
-    }
-    const lk = Math.round(T_.k - s.k), lp = Math.round(T_.p - s.p);
-    document.getElementById("food-left").textContent = s.k === 0 ? "لسه مسجلتش أكل النهارده." :
-      lk > 0 ? "فاضلك حوالي " + lk + " سعر و" + Math.max(0, lp) + " جم بروتين." : "خلصت سعرات النهارده. لو جعت: خيار أو خس أو زبادي لايت.";
-  }
-  document.addEventListener("click", e => {
-    const p = e.target.closest(".pick"); if (p) { food.pick[p.dataset.meal] = +p.dataset.alt; save(); renderFood(); return }
-    const a = e.target.closest(".ate"); if (a) { food.ate[a.dataset.meal] = !food.ate[a.dataset.meal]; save(); renderFood(); return }
-    const sb = e.target.closest(".sn-btn");
-    if (sb) { const i = sb.closest(".snack").dataset.i; food.snacks[i] = Math.max(0, (food.snacks[i] || 0) + +sb.dataset.d); save(); renderFood() }
-  });
-  document.getElementById("food-reset").onclick = () => { food.ate = {}; food.snacks = {}; food.custom = {}; food.extra = []; save(); renderFood() };
-
-  // ----- log what was actually eaten: Claude estimates the numbers, the viewer confirms
-  const r1 = x => Math.round(x * 10) / 10;
-  function itemsTable(items, tot) {
-    const esc = s => String(s).replace(/[&<>"]/g, c => ({ "&": "&amp;", "<": "&lt;", ">": "&gt;", '"': "&quot;" })[c]);
-    return '<div class="tbl"><table><tr><th>الصنف</th><th>سعرات</th><th class="p">بروتين</th><th class="c">كارب</th><th class="f">دهون</th></tr>' +
-      items.map(i => '<tr><td class="it">' + esc(i.name) + '<span>' + esc(i.amount || "") + '</span></td><td>' + Math.round(i.k) + '</td><td class="p">' + r1(i.p) + '</td><td class="c">' + r1(i.c) + '</td><td class="f">' + r1(i.f) + '</td></tr>').join("") +
-      '<tr class="tot"><td class="it">المجموع</td><td>' + Math.round(tot.k) + '</td><td class="p">' + Math.round(tot.p) + '</td><td class="c">' + Math.round(tot.c) + '</td><td class="f">' + Math.round(tot.f) + '</td></tr></table></div>';
-  }
-  function renderSaved(lx) {
-    const slot = lx.dataset.slot, out = lx.querySelector(".logx-saved"), open = lx.querySelector(".logx-open");
-    const entries = slot === "x" ? food.extra.map((e, i) => [e, i]) : food.custom[slot] ? [[food.custom[slot], -1]] : [];
-    out.innerHTML = entries.map(([e, i]) => '<div class="saved"><p class="saved-h"><b>متسجل:</b> <span></span></p>' + itemsTable(e.items, e.tot) +
-      (e.note ? '<p class="saved-n"></p>' : "") + '<button type="button" class="ghost logx-del" data-i="' + i + '">امسح</button></div>').join("");
-    out.querySelectorAll(".saved").forEach((d, n) => { const e = entries[n][0]; d.querySelector(".saved-h span").textContent = e.text; if (e.note) d.querySelector(".saved-n").textContent = e.note });
-    if (slot !== "x") open.hidden = entries.length > 0;
-  }
-  function num(v) { v = Number(v); return isFinite(v) && v >= 0 ? Math.min(v, 5000) : 0 }
-  function planFor(slot) {
-    if (slot === "x") return "دي حاجة زيادة برا الوجبات الأربعة.";
-    const m = document.getElementById("meal-" + slot), tb = m.querySelector('.alt-tb:not([hidden])');
-    return "دي وجبة " + m.querySelector("h3").textContent + "، وفي الخطة المفروض حوالي " + tb.dataset.k + " سعر و" + tb.dataset.p + " جم بروتين.";
-  }
-  async function analyze(lx) {
-    const slot = lx.dataset.slot, ta = lx.querySelector("textarea"), res = lx.querySelector(".logx-res"), go = lx.querySelector(".logx-go");
-    const text = ta.value.trim(); if (!text) return;
-    if (AI.why()) { aiRefresh(); return }
-    go.disabled = true; res.innerHTML = '<p class="wait">بيحسب...</p>';
-    try {
-      const data = await AI.json(
-        "انت أخصائي تغذية. قدّر القيم الغذائية للأكل ده (أكل مصري غالبًا). لو الكمية مش مكتوبة، افترض الكمية المعتادة واكتبها. " + planFor(slot) +
-        "\nرد بـ JSON بس بالشكل ده: " + '{"items":[{"name":"بيض مقلي","amount":"2 بيضة","kcal":180,"p":12,"c":1,"f":14}],"note":"جملة قصيرة بالعامية المصرية: مقارنة بالخطة ونصيحة لو فيه"}' +
-        "\nالأكل: " + text);
-      const items = (Array.isArray(data && data.items) ? data.items : []).slice(0, 20).map(i => ({ name: String(i.name || "صنف"), amount: String(i.amount || ""), k: num(i.kcal), p: num(i.p), c: num(i.c), f: num(i.f) }));
-      if (!items.length) throw { code: "empty_completion" };
-      const tot = { k: 0, p: 0, c: 0, f: 0 }; items.forEach(i => { for (const k in tot) tot[k] += i[k] });
-      const entry = { text, items, tot, note: String((data && data.note) || "").slice(0, 300) };
-      res.innerHTML = itemsTable(items, tot) + '<p class="saved-n"></p><div class="ask-b"><button type="button" class="logx-save">سجّلها</button></div>';
-      res.querySelector(".saved-n").textContent = entry.note;
-      res.querySelector(".logx-save").onclick = () => {
-        if (slot === "x") food.extra.push(entry); else food.custom[slot] = entry;
-        save(); ta.value = ""; res.textContent = ""; lx.querySelector(".logx-body").hidden = true; renderFood();
-      };
-    } catch (e) {
-      if (["not_granted", "sampling_disabled", "not_declared", "capability_disabled"].includes(e.code)) { claudeSample = null; aiRefresh(); res.textContent = ""; }
-      else {
-        const p = document.createElement("p"); p.className = "none";
-        p.textContent = (e.code === "invalid_json" || e.code === "empty_completion" ? "مقدرتش أفهم الأكل ده. اكتبه بتفصيل أكتر (الصنف والكمية)." : e.code === "rate_limited" ? "طلبات كتير ورا بعض. استنى شوية وجرّب تاني." : e.code === "bad_key" ? "مفتاح Gemini مش شغال. راجعه في الإعدادات في صفحة السجل." : "حصلت مشكلة في الاتصال. جرّب تاني.") + errDetail(e);
-        res.textContent = ""; res.append(p);
-      }
-    } finally { go.disabled = false }
-  }
-  document.addEventListener("click", e => {
-    const lx = e.target.closest(".logx"); if (!lx) return;
-    if (e.target.closest(".logx-open")) { lx.querySelector(".logx-body").hidden = false; lx.querySelector("textarea").focus() }
-    else if (e.target.closest(".logx-cancel")) { lx.querySelector(".logx-body").hidden = true; lx.querySelector(".logx-res").textContent = "" }
-    else if (e.target.closest(".logx-go")) analyze(lx);
-    else if (e.target.closest(".logx-del")) {
-      const i = +e.target.closest(".logx-del").dataset.i;
-      if (lx.dataset.slot === "x") food.extra.splice(i, 1); else delete food.custom[lx.dataset.slot];
-      save(); renderFood();
-    }
-  });
-  renderFood();
-
-  const q = document.getElementById("swap-q");
-  q.addEventListener("input", () => {
-    const v = q.value.trim(); let n = 0;
-    document.querySelectorAll(".swaps tr[data-q]").forEach(r => { const hit = !v || r.dataset.q.includes(v); r.hidden = !hit; n += hit });
-    document.getElementById("swap-none").hidden = n > 0;
-  });
-
   // ----- record: month calendar, summary and day details from hist
-  const NAMES = {"ex": {"A1": "ليج برس", "A2": "تشيست برس على الجهاز", "A3": "سحب أمامي", "A4": "ضغط أكتاف دمبل جالس", "A5": "ليج كيرل جالس", "A6": "بايسبس دمبل", "A7": "بلانك", "B1": "جوبلت سكوات", "B2": "ضغط صدر عالي بالدمبل", "B3": "سحب أرضي بالكابل", "B4": "رومانيان ديدلفت دمبل", "B5": "رفرفة جانبي", "B6": "ترايسبس بالكابل", "B7": "ديد باج", "C1": "هيب ثرست", "C2": "ليج اكستنشن", "C3": "فراشة صدر", "C4": "سحب دمبل بدراع واحد", "C5": "فيس بول", "C6": "هامر كيرل", "C7": "كرانش بالكابل"}, "meal": {"1": "الفطار", "2": "الغدا", "3": "وجبة التمرين", "4": "العشا"}, "snack": ["بروتين بار بالانس", "رقائق البروتين", "ريال حمص سناكس"]};
+  const NAMES = {"ex": {"A1": "ليج برس", "A2": "تشيست برس على الجهاز", "A3": "سحب أمامي", "A4": "ضغط أكتاف دمبل جالس", "A5": "ليج كيرل جالس", "A6": "بايسبس دمبل", "A7": "بلانك", "B1": "جوبلت سكوات", "B2": "ضغط صدر عالي بالدمبل", "B3": "سحب أرضي بالكابل", "B4": "رومانيان ديدلفت دمبل", "B5": "رفرفة جانبي", "B6": "ترايسبس بالكابل", "B7": "ديد باج", "C1": "هيب ثرست", "C2": "ليج اكستنشن", "C3": "فراشة صدر", "C4": "سحب دمبل بدراع واحد", "C5": "فيس بول", "C6": "هامر كيرل", "C7": "كرانش بالكابل"}};
   const MONTHS = ["يناير", "فبراير", "مارس", "أبريل", "مايو", "يونيو", "يوليو", "أغسطس", "سبتمبر", "أكتوبر", "نوفمبر", "ديسمبر"];
   const iso = d => d.toLocaleDateString("en-CA");
   let lgMonth = new Date(); lgMonth.setDate(1);
   let lgSel = today;
-  function foodState(sum) {
-    if (!sum || !sum.k) return "";
-    if (sum.k > T_.k * 1.1) return "over";
-    if (sum.k >= T_.k * 0.85 && sum.p >= T_.p * 0.85) return "good";
-    return "under";
-  }
   function letters(rec) { return [...new Set(Object.keys((rec && rec.sets) || {}).filter(k => rec.sets[k]).map(k => k[0]))].sort() }
   function tile(label, value, sub) { return '<div class="tile"><span class="tl">' + label + '</span><b>' + value + '</b><span class="ts">' + (sub || "") + '</span></div>' }
   function renderLog() {
     const y = lgMonth.getFullYear(), m = lgMonth.getMonth(), last = new Date(y, m + 1, 0).getDate();
     document.getElementById("lg-title").textContent = MONTHS[m] + " " + y;
-    let workouts = 0, planned = 0, logged = 0, kSum = 0, pSum = 0, good = 0; const weights = [];
+    let workouts = 0, planned = 0, sets = 0; const weights = [];
     let cells = ["سبت", "حد", "اتنين", "تلات", "أربع", "خميس", "جمعة"].map(n => '<div class="ch">' + n + '</div>').join("");
     const first = new Date(y, m, 1).getDay(), lead = (first + 1) % 7;
     for (let i = 0; i < lead; i++) cells += '<div class="cd empty"></div>';
     for (let d = 1; d <= last; d++) {
-      const dt = new Date(y, m, d), key = iso(dt), rec = hist[key], L = letters(rec), fs = foodState(rec && rec.sum);
+      const dt = new Date(y, m, d), key = iso(dt), rec = hist[key], L = letters(rec);
       if (key <= today && [6, 1, 3].includes(dt.getDay())) planned++;
       if (L.length) workouts++;
-      if (rec && rec.sum && rec.sum.k) { logged++; kSum += rec.sum.k; pSum += rec.sum.p; if (fs === "good") good++ }
+      sets += Object.keys((rec && rec.sets) || {}).filter(k => rec.sets[k]).length;
       if (rec && rec.weight) weights.push(rec.weight);
       cells += '<button type="button" class="cd' + (key === today ? " today" : "") + (key === lgSel ? " sel" : "") + (key > today ? " future" : "") + '" data-date="' + key + '">' +
-        '<span class="dn">' + d + '</span>' + (L.length ? '<span class="badge-s">' + L.join("") + '</span>' : "") + (fs ? '<span class="lg-dot ' + fs + '"></span>' : "") + '</button>';
+        '<span class="dn">' + d + '</span>' + (L.length ? '<span class="badge-s">' + L.join("") + '</span>' : "") + (rec && rec.weight ? '<span class="lg-dot good"></span>' : "") + '</button>';
     }
     document.getElementById("lg-cal").innerHTML = cells;
     const wTxt = weights.length ? weights[weights.length - 1] + " كجم" : "—";
     const wSub = weights.length > 1 ? ((weights[weights.length - 1] - weights[0] > 0 ? "+" : "") + (Math.round((weights[weights.length - 1] - weights[0]) * 10) / 10) + " كجم من أول الشهر") : "سجّل وزنك من تفاصيل اليوم";
     document.getElementById("lg-tiles").innerHTML =
       tile("أيام تمرين", workouts + " / " + planned, "من الأيام المخططة لحد النهارده") +
-      tile("متوسط السعرات", logged ? Math.round(kSum / logged) : "—", logged ? "في " + logged + " يوم متسجل · الهدف " + T_.k : "لسه مفيش أكل متسجل") +
-      tile("متوسط البروتين", logged ? Math.round(pSum / logged) + " جم" : "—", "الهدف " + T_.p + " جم") +
-      tile("أيام الأكل في الهدف", logged ? good + " / " + logged : "—", "سعرات وبروتين قريبين من الهدف") +
+      tile("مجموعات الشهر", sets, workouts ? "حوالي " + Math.round(sets / workouts) + " في كل تمرينة" : "لسه مفيش مجموعات متسجلة") +
       tile("الوزن", wTxt, wSub);
     renderDay();
   }
@@ -1399,17 +934,8 @@ figcaption { position: absolute; top: 6px; right: 8px; font-size: 11px; color: #
     const esc = s => String(s).replace(/[&<>"]/g, c => ({ "&": "&amp;", "<": "&lt;", ">": "&gt;", '"': "&quot;" })[c]);
     const sets = Object.keys(rec.sets || {}).filter(k => rec.sets[k]), byEx = {};
     sets.forEach(k => { const e = k.split("-")[0]; byEx[e] = (byEx[e] || 0) + 1 });
-    const fdd = rec.food || {}, meals = [];
-    Object.keys(NAMES.meal).forEach(no => {
-      if (fdd.custom && fdd.custom[no]) meals.push(NAMES.meal[no] + ": " + fdd.custom[no].text + " (" + Math.round(fdd.custom[no].tot.k) + " سعر)");
-      else if (fdd.ate && fdd.ate[no]) meals.push(NAMES.meal[no] + " (بديل " + (((fdd.pick || {})[no] || 0) + 1) + ")");
-    });
-    Object.keys(fdd.snacks || {}).forEach(i => { if (fdd.snacks[i]) meals.push(fdd.snacks[i] + " × " + NAMES.snack[i]) });
-    (fdd.extra || []).forEach(x => meals.push("زيادة: " + x.text + " (" + Math.round(x.tot.k) + " سعر)"));
-    const sum = rec.sum || {};
     box.innerHTML = '<h3>' + dt.toLocaleDateString("ar-EG-u-nu-latn", { weekday: "long", day: "numeric", month: "long" }) + '</h3>' +
-      '<div class="dd-grid"><div><h4>التمرين</h4>' + (sets.length ? '<ul>' + Object.keys(byEx).sort().map(e => '<li>' + esc(NAMES.ex[e] || e) + ' <span class="sub">' + byEx[e] + (byEx[e] === 1 ? ' مجموعة' : ' مجموعات') + '</span></li>').join("") + '</ul>' : '<p class="sub">مفيش تمرين متسجل.</p>') + '</div>' +
-      '<div><h4>الأكل</h4>' + (meals.length ? '<ul>' + meals.map(x => '<li>' + esc(x) + '</li>').join("") + '</ul><p class="dd-sum">' + (sum.k || 0) + ' سعر · بروتين ' + (sum.p || 0) + ' · كارب ' + (sum.c || 0) + ' · دهون ' + (sum.f || 0) + '</p>' : '<p class="sub">مفيش أكل متسجل.</p>') + '</div></div>' +
+      '<div><h4>التمرين</h4>' + (sets.length ? '<ul>' + Object.keys(byEx).sort().map(e => '<li>' + esc(NAMES.ex[e] || e) + ' <span class="sub">' + byEx[e] + (byEx[e] === 1 ? ' مجموعة' : ' مجموعات') + '</span></li>').join("") + '</ul>' : '<p class="sub">مفيش تمرين متسجل.</p>') + '</div>' +
       '<div class="wt"><label for="lg-w">الوزن (كجم)</label><input id="lg-w" type="number" inputmode="decimal" step="0.1" min="30" max="300" value="' + (rec.weight || "") + '" placeholder="مثلًا 109.5"><button type="button" id="lg-wsave">احفظ الوزن</button></div>';
     document.getElementById("lg-wsave").onclick = () => {
       const v = parseFloat(document.getElementById("lg-w").value);
@@ -1429,7 +955,7 @@ figcaption { position: absolute; top: 6px; right: 8px; font-size: 11px; color: #
   let dl = null;
   if (window.claude && claude.use) { document.getElementById("lg-export").hidden = true; claude.use("downloads").then(d => { dl = d; document.getElementById("lg-export").hidden = !d }) }
   document.getElementById("lg-export").onclick = async () => {
-    const blob = new Blob([JSON.stringify({ app: "gym-plan", saved: new Date().toISOString(), hist, pick: food.pick }, null, 1)], { type: "application/json" });
+    const blob = new Blob([JSON.stringify({ app: "gym-plan", saved: new Date().toISOString(), hist }, null, 1)], { type: "application/json" });
     const name = "gym-backup-" + today + ".json";
     if (dl) { try { await dl.save({ filename: name, data: blob }); lgMsg.textContent = "تمام." } catch (e) { lgMsg.textContent = "" } return }
     try {
@@ -1451,80 +977,11 @@ figcaption { position: absolute; top: 6px; right: 8px; font-size: 11px; color: #
     e.target.value = "";
   };
 
-  // ----- coach: chat with Claude, grounded in the plan and today's state
-  const RULES_BUILTIN = ""; // empty in the public phone app; there it comes from the private repo (profile.md)
-  const RULES_FALLBACK = "انت كوتش تمرين وأكل لشخص مبتدئ هدفه ينشّف ويبني عضل، بيلعب 3 أيام جسم كامل وهدفه حوالي 2450 سعر و190 جم بروتين في اليوم. رد بالعامية المصرية، قصير وعملي. لو فيه وجع قوله يوقف ويروح لدكتور لو مكمل. متقترحش مكملات ولا أدوية.";
-  const rules = () => RULES_BUILTIN || store.get("profile") || RULES_FALLBACK;
-  const chat = document.getElementById("chat"), form = document.getElementById("ask"), box = document.getElementById("ask-in");
-  const sendB = document.getElementById("send"), stopB = document.getElementById("stop"), micB = document.getElementById("mic");
-  let turns = (store.get("chat") || []).slice(-16), ctl = null, busy = false;
-  const DAYNAMES = ["الأحد", "الاثنين", "التلات", "الأربع", "الخميس", "الجمعة", "السبت"];
-  function stateNow() {
-    const { s, list } = eaten(), d = new Date();
-    const sets = Object.keys(done.on).filter(k => done.on[k]);
-    return "حالة النهارده (" + DAYNAMES[d.getDay()] + "، الساعة " + d.getHours() + ":" + String(d.getMinutes()).padStart(2, "0") + "):\n" +
-      "أكل لحد دلوقتي: " + (list.length ? list.join("، ") : "مسجلش حاجة") + " = " + Math.round(s.k) + " سعر، بروتين " + Math.round(s.p) + "، كارب " + Math.round(s.c) + "، دهون " + Math.round(s.f) + ".\n" +
-      "مجموعات خلصها النهارده: " + (sets.length ? sets.length + " (" + [...new Set(sets.map(k => k.split("-")[0]))].join("، ") + ")" : "ولا مجموعة") + ".";
-  }
-  function bubble(role, text) {
-    const el = document.createElement("div"); el.className = "msg " + role; el.textContent = text; chat.append(el); return el;
-  }
-  function renderChat() { chat.textContent = ""; turns.forEach(t => bubble(t.role === "user" ? "me" : "bot", t.content)) }
-  renderChat();
-  function setBusy(b) { busy = b; sendB.disabled = b; stopB.hidden = !b; document.querySelectorAll(".q").forEach(x => x.disabled = b) }
-  const MSG = { rate_limited: "طلبات كتير ورا بعض. استنى شوية وجرّب تاني.", session_expired: "محتاج تعمل تسجيل دخول تاني في Claude.",
-    refused: "مقدرش أرد على ده. جرّب تسأل بطريقة تانية.", empty_completion: "مفيش رد. جرّب تسأل بطريقة أبسط." };
-  async function ask(text) {
-    if (busy || !text.trim()) return;
-    if (AI.why()) { aiRefresh(); return }
-    turns.push({ role: "user", content: text.trim() }); bubble("me", text.trim()); box.value = "";
-    const out = bubble("bot wait", "بيفكر...");
-    setBusy(true); ctl = new AbortController();
-    try {
-      const ans = await AI.chat([{ role: "user", content: rules() + "\n\n" + stateNow() }, ...turns.slice(-12)],
-        { signal: ctl.signal, onText: ({ text }) => { out.classList.remove("wait"); out.textContent = text; out.scrollIntoView({ block: "nearest" }) } });
-      turns.push({ role: "assistant", content: ans });
-    } catch (e) {
-      out.classList.remove("wait");
-      if (e.code === "not_granted" || e.code === "sampling_disabled" || e.code === "not_declared" || e.code === "capability_disabled") { out.remove(); turns.pop(); claudeSample = null; aiRefresh(); }
-      else if (e.code === "bad_key") { out.textContent = "مفتاح Gemini مش شغال. راجعه في الإعدادات في صفحة السجل."; turns.pop() }
-      else if (e.code === "cancelled") { out.textContent = e.text || "اتلغى."; if (e.text) turns.push({ role: "assistant", content: e.text }) }
-      else { out.textContent = (e.text ? e.text + "\n\n" : "") + (MSG[e.code] || "حصلت مشكلة في الاتصال. جرّب تاني.") + errDetail(e); if (e.text) turns.push({ role: "assistant", content: e.text }) }
-    } finally { setBusy(false); store.set("chat", turns.slice(-16)) }
-  }
-  form.addEventListener("submit", e => { e.preventDefault(); ask(box.value) });
-  box.addEventListener("keydown", e => { if (e.key === "Enter" && !e.shiftKey) { e.preventDefault(); ask(box.value) } });
-  document.querySelectorAll(".q").forEach(b => b.onclick = () => ask(b.textContent));
-  stopB.onclick = () => ctl && ctl.abort();
-  document.getElementById("chat-clear").onclick = () => { if (busy) return; turns = []; store.set("chat", turns); renderChat() };
-  aiRefresh();
-  if (!APP && window.claude && claude.use) {
-    claude.use("sample").then(s => { claudeSample = s; aiRefresh() });
-    claude.use("dictation").then(d => {
-      if (!d) return;
-      let lang = "ar", base = "";
-      micB.hidden = false;
-      d.onPartial(({ text }) => { box.value = base + text });
-      d.onFinal(({ text }) => { base += text + " "; box.value = base });
-      d.onState(({ state, reason }) => {
-        const on = state === "listening" || state === "starting";
-        micB.setAttribute("aria-pressed", String(on)); micB.textContent = on ? "وقّف" : "اتكلم";
-        if (state === "idle" && reason === "unavailable") { if (lang) lang = null; else micB.hidden = true }
-        if (state === "idle" && reason === "not_granted") micB.hidden = true;
-      });
-      micB.onclick = () => {
-        if (micB.getAttribute("aria-pressed") === "true") { d.stop().catch(() => {}); return }
-        base = box.value ? box.value + " " : "";
-        d.start(lang ? { language: lang } : undefined).catch(e => { if (e && e.code === "not_granted") micB.hidden = true });
-      };
-    });
-  }
-
-  // ----- settings (phone app): GitHub token for online saving, Gemini key for AI
+  // ----- settings (phone app): GitHub token for online saving
   if (APP) {
     const $ = id => document.getElementById(id);
     const mask = v => v ? "محفوظ (" + v.slice(0, 4) + "…" + v.slice(-4) + ")" : "مش متحفوظ";
-    function showKeys() { $("gh-state").textContent = mask(store.get("ghToken")); $("gem-state").textContent = mask(store.get("geminiKey")); $("gh-repo").value = ghRepo() }
+    function showKeys() { $("gh-state").textContent = mask(store.get("ghToken")); $("gh-repo").value = ghRepo() }
     showKeys(); syncStatus(store.get("ghToken") ? lastSyncText() : "لسه مش متوصل بـ GitHub. السجل متحفوظ على الموبايل لحد ما توصله.");
     $("gh-save").onclick = () => {
       const t = $("gh-token").value.trim(), rp = $("gh-repo").value.trim();
@@ -1532,23 +989,7 @@ figcaption { position: absolute; top: 6px; right: 8px; font-size: 11px; color: #
       if (/^[\w.-]+\/[\w.-]+$/.test(rp)) store.set("ghRepo", rp);
       $("gh-token").value = ""; showKeys(); syncAll(true);
     };
-    $("gem-save").onclick = async () => {
-      const k = $("gem-key").value.trim(); if (!k) return;
-      store.set("geminiKey", k); store.set("gemModel", null); $("gem-key").value = ""; showKeys();
-      $("gem-msg").textContent = "بيجرّب المفتاح...";
-      try {
-        await gemCall([{ role: "user", parts: [{ text: "رد بكلمة واحدة: تمام" }] }], false); // a real request, same path as the coach and food analysis
-        const m = store.get("gemModel");
-        $("gem-msg").textContent = "المفتاح شغال ✓ (" + m.model.replace("models/", "") + (m.kind === "vx" ? " · Vertex" : "") + ")";
-      }
-      catch (e) {
-        store.set("gemModel", null);
-        $("gem-msg").textContent = (e.code === "bad_key" ? "المفتاح ده مش شغال." : e.code === "rate_limited" ? "المفتاح اتقبل بس فيه ضغط دلوقتي. جرّب كمان دقيقة." : "مقدرتش أجرّب المفتاح دلوقتي. اتأكد إن معاك نت.") +
-          errDetail(e);
-      }
-      aiRefresh();
-    };
-    $("keys-clear").onclick = () => { store.set("ghToken", null); store.set("geminiKey", null); store.set("gemModel", null); showKeys(); aiRefresh(); syncStatus("اتمسحت المفاتيح من الموبايل ده.") };
+    $("keys-clear").onclick = () => { store.set("ghToken", null); showKeys(); syncStatus("اتمسح المفتاح من الموبايل ده.") };
     syncAll(true);
   }
 })();
